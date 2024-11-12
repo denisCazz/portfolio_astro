@@ -221,7 +221,13 @@ import Layout from '../layouts/Layout.astro';
 		let iteration = 0;
 
 		const interval = setInterval(() => {
-			element.innerText = text
+
+			if(!element) {
+				clearInterval(interval);
+				return;
+			}
+
+			(element as HTMLElement).innerText = text
 				.split("")
 				.map((letter, index) => {
 					if (index < iteration) {
