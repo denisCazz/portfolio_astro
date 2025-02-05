@@ -1,0 +1,208 @@
+body{
+  margin: 0;
+}
+
+:root {
+  --primary: #2a9fd6;    /* Blu chiaro */
+  --secondary: #77b300;  /* Verde chiaro */
+  --dark: #1c1e22;       /* Sfondo scuro */
+  --darker: #121417;     /* Sfondo più scuro */
+  --light: #f0f0f0;      /* Testo chiaro */
+  --code-bg: #25272b;    /* Sfondo blocchi codice */
+  --border-color: rgba(255, 255, 255, 0.1); /* Colore dei bordi */
+}
+/* Animazioni */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+/* Hero Section */
+.hero {
+  text-align: center;
+  padding: 6rem 2rem;
+  background: linear-gradient(45deg, var(--darker), var(--dark));
+  position: relative;
+  overflow: hidden;
+}
+
+.hero h1 {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+  background: linear-gradient(45deg, var(--primary), var(--secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero .typing-effect {
+  font-size: 1.5rem;
+  color: var(--light);
+  opacity: 0.9;
+}
+
+/* Skills Grid */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  margin: 3rem 0;
+}
+
+.skill-card {
+  background: var(--darker);
+  padding: 2rem;
+  border-radius: 8px;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.skill-card:hover {
+  transform: translateY(-5px);
+}
+
+.skill-card i {
+  font-size: 2.5rem;
+  color: var(--primary);
+  margin-bottom: 1rem;
+}
+
+/* Project Cards */
+.projects-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.project-card {
+  background: var(--darker);
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.project-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-bottom: 3px solid var(--primary);
+}
+
+.project-info {
+  padding: 1.5rem;
+}
+
+.tech-tag {
+  display: inline-block;
+  background: var(--code-bg);
+  color: var(--primary);
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  margin: 0.3rem;
+}
+
+/* Terminal Effect */
+.terminal-window {
+  background: var(--darker);
+  border-radius: 8px;
+  padding: 1.5rem;
+  font-family: 'Fira Code', monospace;
+  position: relative;
+}
+
+.terminal-bar {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.terminal-button {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  margin-right: 0.5rem;
+}
+
+.red { background: #ff5f56; }
+.yellow { background: #ffbd2e; }
+.green { background: #27c93f; }
+
+.code-line {
+  color: var(--light);
+  margin: 0.5rem 0;
+}
+
+.code-line::before {
+  content: '$ ';
+  color: var(--secondary);
+}
+
+/* Progress Bars */
+.progress-container {
+  background: var(--code-bg);
+  height: 8px;
+  border-radius: 4px;
+  margin: 1rem 0;
+}
+
+.progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
+  border-radius: 4px;
+  transition: width 0.5s ease;
+}
+
+/* Contact Form */
+.contact-form {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.form-input {
+  width: 100%;
+  padding: 1rem;
+  margin: 0.5rem 0;
+  background: var(--darker);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--light);
+  border-radius: 4px;
+}
+
+.form-input:focus {
+  outline: 2px solid var(--primary);
+}
+
+/* Social Links */
+.social-links {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin: 2rem 0;
+}
+
+.social-link {
+  font-size: 1.5rem;
+  color: var(--light);
+  transition: color 0.3s ease;
+}
+
+.social-link:hover {
+  color: var(--primary);
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 2.5rem;
+  }
+  
+  .skills-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .skills-grid {
+    grid-template-columns: 1fr;
+  }
+}

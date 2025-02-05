@@ -1,0 +1,46 @@
+---
+// src/components/Footer.astro
+---
+
+<footer class="footer">
+  <div class="social-links">
+    <a href="https://github.com/tuprofilo" class="social-link" target="_blank" rel="noopener noreferrer">
+      <i class="fab fa-github"></i>
+    </a>
+    <a href="https://linkedin.com/in/tuprofilo" class="social-link" target="_blank" rel="noopener noreferrer">
+      <i class="fab fa-linkedin"></i>
+    </a>
+    <a href="mailto:tuaemail@example.com" class="social-link">
+      <i class="fas fa-envelope"></i>
+    </a>
+  </div>
+  <p class="copyright">&copy; 2023 Il Tuo Nome. Tutti i diritti riservati.</p>
+</footer>
+
+<style>
+  .footer {
+    background: var(--darker);
+    padding: 2rem;
+    text-align: center;
+    border-top: 1px solid var(--border-color);
+  }
+  .social-links {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  .social-link {
+    color: var(--light);
+    font-size: 1.5rem;
+    transition: color 0.3s ease;
+  }
+  .social-link:hover {
+    color: var(--primary);
+  }
+  .copyright {
+    color: var(--light);
+    opacity: 0.7;
+    font-size: 0.9rem;
+  }
+</style>

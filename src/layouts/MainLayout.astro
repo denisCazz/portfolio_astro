@@ -1,0 +1,23 @@
+---
+// src/layouts/MainLayout.astro
+import '../styles/global.css';
+---
+
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfolio Developer</title>
+  </head>
+  <body>
+    <header>
+      <slot name="header" />
+    </header>
+    <main>
+      <slot />
+    </main>
+    <footer>
+      <slot name="footer" />
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,28 @@
+---
+// src/components/Header.astro
+---
+
+<header class="header">
+  <nav>
+    <a href="/">Home</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<style>
+  .header {
+    background: var(--darker);
+    padding: 1rem;
+    text-align: center;
+  }
+  .header a {
+    color: var(--light);
+    margin: 0 1rem;
+    text-decoration: none;
+  }
+  .header a:hover {
+    color: var(--primary);
+  }
+</style>
