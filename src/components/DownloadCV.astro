@@ -1,0 +1,46 @@
+---
+const cvLinks = {
+  it: "/cv/CV_Italiano.pdf",
+  en: "/cv/CV_English.pdf",
+};
+---
+
+<section id="download-cv" class="download-cv">
+  <h2>📄 Scarica il mio CV</h2>
+  <div class="cv-buttons">
+    <a href={cvLinks.it} download class="cv-button">Italiano</a>
+    <a href={cvLinks.en} download class="cv-button">English</a>
+  </div>
+</section>
+
+<style>
+  .download-cv {
+    padding: 3rem 2rem;
+    text-align: center;
+    background: radial-gradient(circle, rgba(10,10,10,1) 0%, rgba(20,20,20,1) 100%);
+  }
+  .download-cv h2 {
+    color: #00ffea;
+    text-shadow: 0 0 10px rgba(0, 255, 234, 0.6);
+    margin-bottom: 1.5rem;
+  }
+  .cv-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+  }
+  .cv-button {
+    background: #1a1a1a;
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background 0.3s, box-shadow 0.3s;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  .cv-button:hover {
+    background: rgba(0, 255, 234, 0.2);
+    box-shadow: 0 0 15px rgba(0, 255, 234, 0.6);
+  }
+</style>

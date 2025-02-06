@@ -3,26 +3,142 @@
 ---
 
 <header class="header">
-  <nav>
-    <a href="/">Home</a>
-    <a href="#skills">Skills</a>
-    <a href="#projects">Projects</a>
-    <a href="#contact">Contact</a>
-  </nav>
+  <div class="container">
+    <a href="/" class="logo">Denis Cazzulo</a>
+    <img src="/logo.jpg" alt="Logo" class="logoImg" width="40" height="40" />
+    <nav>
+      <button class="menu-toggle" id="menu-toggle" aria-label="Toggle menu">
+        &#9776;
+      </button>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#hero" aria-current="page">Home</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
 </header>
 
+<script>
+  document.getElementById('menu-toggle').addEventListener('click', function () {
+    document.getElementById('nav-links').classList.toggle('active');
+  });
+</script>
+
 <style>
-  .header {
+  
+:root {
+  --primary: #00ffea;
+  --secondary: #ff00f7;
+  --background: #0d0d0d;
+  --accent: #ffffff;
+  --dark: #111;
+  --darker: #0d0d0d;
+  --light: #eee;
+}
+
+.logoImg {
+  border-radius: 50%;
+  transition: transform 0.3s ease;
+}
+
+.logoImg:hover {
+  transform: scale(1.1);
+}
+
+.header {
+  background-color: var(--darker);
+  padding: 1rem;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1.5rem;
+}
+
+.logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: var(--light);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.logo:hover {
+  color: var(--primary);
+}
+
+nav {
+  display: flex;
+  align-items: center;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+}
+
+.nav-links li a {
+  color: var(--light);
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.nav-links li a:hover {
+  color: var(--primary);
+}
+
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--light);
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+  }
+
+  .logo {
+    display: none;
+  }
+  
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
     background: var(--darker);
-    padding: 1rem;
+    padding: 1rem 0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+  
+  .nav-links li {
     text-align: center;
+    padding: 0.75rem 0;
   }
-  .header a {
-    color: var(--light);
-    margin: 0 1rem;
-    text-decoration: none;
-  }
-  .header a:hover {
-    color: var(--primary);
-  }
+}
 </style>

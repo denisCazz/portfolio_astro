@@ -7,11 +7,13 @@ import '../styles/global.css';
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Portfolio Developer</title>
+    <title>Portfolio Denis Cazzulo</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&family=Roboto:wght@400;500;700&">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- favicon -->
+    <link rel="icon" href="/logo.ico" />
   </head>
   <body>
     <header>
@@ -23,5 +25,48 @@ import '../styles/global.css';
     <footer>
       <slot name="footer" />
     </footer>
+
+    <button id="back-to-top-btn" class="back-to-top-btn">
+      <i class="fas fa-arrow-up"></i> {/* Font Awesome arrow icon */}
+    </button>
+
+    <script>
+      const backToTopButton = document.getElementById('back-to-top-btn');
+
+      window.onscroll = function () {
+        if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+          backToTopButton.style.display = 'block';
+        } else {
+          backToTopButton.style.display = 'none';
+        }
+      };
+
+      backToTopButton.addEventListener('click', () => {
+        document.body.scrollTop = 0; // For Safari
+        document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+      });
+    </script>
+
+    <style>
+    .back-to-top-btn {
+        display: none; /* Hidden by default */
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 99;
+        background-color: rgba(0, 255, 170, 0.7); /* Teal background with opacity */
+        color: #121212; /* Dark text color */
+        border: none;
+        border-radius: 5px;
+        padding: 10px 15px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+      }
+
+    .back-to-top-btn:hover {
+        background-color: rgba(0, 255, 170, 0.9); /* Slightly darker teal on hover */
+      }
+    </style>
   </body>
 </html>
