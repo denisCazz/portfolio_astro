@@ -3,24 +3,137 @@
 ---
 
 <section class="hero">
-  <h1>Benvenuto nel mio Portfolio</h1>
-  <p class="typing-effect">Sono uno sviluppatore full-stack con una passione per il codice pulito e le soluzioni innovative.</p>
+  <!-- Canvas per l'effetto Matrix, posizionato in background -->
+  <canvas id="matrix-canvas"></canvas>
+
+  <!-- Contenitore centrale per il contenuto testuale -->
+  <div class="hero-content">
+    <h1>Benvenuto nel mio Portfolio</h1>
+    <p class="typing-effect">
+      Sono uno sviluppatore full-stack con una passione per il codice pulito e le soluzioni innovative.
+    </p>
+    <p class="extra-text">
+      Esplora il mio lavoro e scopri come trasformo idee in realtà digitali.
+    </p>
+  </div>
 </section>
 
 <style>
+  /* Contenitore principale */
   .hero {
+    position: relative;
     text-align: center;
     padding: 6rem 2rem;
+    /* Gradiente di fallback per lo sfondo, nel caso il canvas non venga caricato subito */
     background: linear-gradient(45deg, var(--darker), var(--dark));
+    overflow: hidden;
   }
+
+  /* Canvas che ospita l'effetto Matrix */
+  #matrix-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+  }
+
+  /* Contenuto testuale in primo piano con sfondo sfumato */
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem 2rem 3rem; /* Il padding inferiore è maggiore per facilitare la dissolvenza */
+    border-radius: 8px;
+    /* Sfondo con gradiente che inizia solido in alto e sfuma verso il basso */
+    background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.8) 0%,
+      rgba(0, 0, 0, 0.8) 70%,
+      rgba(0, 0, 0, 0) 100%
+    );
+    /* Ombreggiatura per dare profondità */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  }
+
   .hero h1 {
     font-size: 4rem;
     margin-bottom: 1rem;
-    color: var(--light); /* Testo chiaro */
+    color: var(--light);
   }
-  .typing-effect {
+
+  .typing-effect,
+  .extra-text {
     font-size: 1.5rem;
     color: var(--light);
-    opacity: 0.9;
+    opacity: 0.95;
+  }
+
+  /* Media query per una migliore responsività */
+  @media (max-width: 768px) {
+    .hero h1 {
+      font-size: 2.8rem;
+    }
+    .typing-effect,
+    .extra-text {
+      font-size: 1.2rem;
+    }
   }
 </style>
+
+<script>
+  // Inizializza l'effetto Matrix sul canvas
+  const canvas = document.getElementById('matrix-canvas') as HTMLCanvasElement;
+  const ctx = canvas.getContext('2d');
+
+  // Imposta le dimensioni iniziali del canvas
+  function setCanvasSize() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  setCanvasSize();
+
+  // Caratteri da visualizzare
+  const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()*&^%";
+  const lettersArr = letters.split("");
+  const fontSize = 16;
+  let columns = Math.floor(canvas.width / fontSize);
+  
+  // Array che tiene traccia della posizione di ogni "goccia" per colonna
+  let drops = Array(columns).fill(canvas.height);
+
+  function drawMatrix() {
+    if (ctx) {
+      // Fai un leggero overlay nero per creare l'effetto dissolvenza dei caratteri precedenti
+      ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      
+      ctx.fillStyle = "#0F0"; // Colore verde dei caratteri
+      ctx.font = fontSize + "px monospace";
+  
+      // Per ogni colonna, disegna un carattere casuale
+      for (let i = 0; i < drops.length; i++) {
+        const text = lettersArr[Math.floor(Math.random() * lettersArr.length)];
+        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+        
+        // Se il carattere ha raggiunto la fine dello schermo, probabilmente ricomincia dalla cima
+        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+          drops[i] = 0;
+        }
+        drops[i]++;
+      }
+    }
+  }
+
+  // Aggiorna l'effetto ogni 33ms
+  setInterval(drawMatrix, 33);
+
+  // Aggiorna le dimensioni del canvas e le colonne al resize della finestra
+  window.addEventListener('resize', () => {
+    setCanvasSize();
+    columns = Math.floor(canvas.width / fontSize);
+    drops = Array(columns).fill(canvas.height);
+  });
+</script>

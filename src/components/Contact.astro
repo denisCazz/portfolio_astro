@@ -1,0 +1,163 @@
+---
+// src/components/Contact.astro
+---
+
+<section id="contact" class="contact">
+  <div class="contact-grid"> {/* Grid container for layout */}
+    <div class="contact-info">
+      <h2>Contatti</h2>
+      <p>
+        Se hai domande o vuoi metterti in contatto con me, puoi inviarmi una mail a:
+        <a href="mailto:deniscazzulo@icloud.com" class="gradient-text">deniscazzulo@icloud.com</a>
+      </p>
+    </div>
+    <div class="social-links">
+      <ul>
+        <li>
+          <a href="https://www.linkedin.com/in/denis-cazzulo-b56b551a9/" target="_blank" rel="noopener noreferrer">
+            <i class="fab fa-linkedin-in"></i>
+          </a>
+        </li>
+        <li>
+          <a href="https://github.com/deniscazz" target="_blank" rel="noopener noreferrer">
+            <i class="fab fa-github"></i>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="glow-container"> {/* Container for the glowing orbs */}
+    <div class="glow-orb"></div>
+    <div class="glow-orb"></div>
+  </div>
+</section>
+
+<style>
+  /* Variabili di Colore */
+:root {
+    --primary: #00ffea; /* Ciano neon */
+    --secondary: #ff00f7; /* Magenta neon */
+    --background: #0d0d0d; /* Sfondo ultra scuro */
+    --accent: #ffffff; /* Accenti in bianco */
+    --border-color: rgba(255, 255, 255, 0.1);
+  }
+
+.contact {
+    padding: 6rem 2rem;
+    background-color: var(--background);
+    position: relative; /* For pseudo-element and orbs */
+    overflow: hidden; /* Hide orb overflow */
+  }
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Two-column layout */
+    gap: 3rem;
+    align-items: center; /* Vertically center content */
+    z-index: 1; /* Ensure content is above background effects */
+  }
+
+.contact-info {
+    text-align: left; /* Align text to the left */
+  }
+
+.contact h2 {
+    font-size: 2.5rem;
+    color: var(--accent);
+    margin-bottom: 1.5rem;
+  }
+
+.contact p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: var(--accent);
+  }
+
+.gradient-text { /* Gradient text for email */
+    background: linear-gradient(to right, var(--primary), var(--secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+  }
+
+.social-links ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: flex-end; /* Align icons to the right */
+    gap: 2rem;
+  }
+
+.social-links a {
+    font-size: 2rem;
+    color: var(--accent);
+    transition: color 0.3s ease, transform 0.3s ease;
+  }
+
+.social-links a:hover {
+    color: var(--primary);
+    transform: scale(1.2);
+  }
+
+  /* Glowing Orbs */
+.glow-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0; /* Place behind content */
+    pointer-events: none; /* Allow interaction with elements behind */
+  }
+
+.glow-orb {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background-color: var(--primary);
+    filter: blur(100px); /* Adjust blur for desired effect */
+    animation: glow-orb-anim 8s linear infinite; /* Add animation */
+  }
+
+.glow-orb:nth-child(1) {
+    top: 20%;
+    left: 10%;
+    background-color: var(--primary);
+  }
+
+.glow-orb:nth-child(2) {
+    bottom: 10%;
+    right: 20%;
+    background-color: var(--secondary);
+    animation-delay: 4s; /* Offset animation for second orb */
+  }
+
+  @keyframes glow-orb-anim {
+    0% {
+      transform: translate(0, 0);
+      opacity: 0.6;
+    }
+    50% {
+      transform: translate(50px, -50px); /* Adjust movement for desired effect */
+      opacity: 0.3;
+    }
+    100% {
+      transform: translate(0, 0);
+      opacity: 0.6;
+    }
+  }
+
+  /* Media Queries */
+  @media (max-width: 768px) {
+  .contact-grid {
+      grid-template-columns: 1fr; /* Single column on smaller screens */
+      text-align: center; /* Center content */
+    }
+
+  .social-links ul {
+      justify-content: center; /* Center icons */
+    }
+  }
+</style>

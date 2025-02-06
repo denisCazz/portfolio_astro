@@ -1,9 +1,13 @@
 ---
 // src/components/Skills.astro
 const skills = [
-  { icon: "fab fa-react", title: "Frontend Development", progress: 90 },
-  { icon: "fab fa-node-js", title: "Backend Development", progress: 85 },
-  { icon: "fab fa-js", title: "JavaScript", progress: 95 },
+  { icon: "fa-solid fa-microchip", title: "AI", progress: 90, description: "Large Language Models, Generative AI, Machine Learning" },
+  { icon: "fa-solid fa-code", title: "ColdFusion", progress: 99, description: "Legacy Web Development, Application Server Management" },
+  { icon: "fa-brands fa-python", title: "Python", progress: 80, description: "Scripting, Automation, Data Analysis" },
+  { icon: "fa-brands fa-js", title: "JS/TS", progress: 95, description: "Modern Web Development, Frameworks (React, Vue)" },
+  { icon: "fa-brands fa-node-js", title: "Node.js", progress: 90, description: "Backend Development, APIs, Serverless Functions" },
+  { icon: "fa-brands fa-jenkins", title: "Jenkins", progress: 80, description: "CI/CD Pipelines, Automation, DevOps" },
+  { icon: "fa-solid fa-database", title: "SQL", progress: 85, description: "Oracle, MSSQL, Database Design, Query Optimization" },
 ];
 ---
 
@@ -11,34 +15,174 @@ const skills = [
   <h2>Le mie competenze</h2>
   <div class="skills-grid">
     {skills.map((skill) => (
-      <div class="skill-card">
-        <i class={skill.icon}></i>
-        <h3>{skill.title}</h3>
-        <div class="progress-container">
-          <div class="progress-bar" style={`width: ${skill.progress}%`}></div>
+      <div class="skill-card" data-progress={skill.progress}>
+        <div class="skill-icon-wrapper">
+          <i class={skill.icon}></i>
         </div>
+        <h3>{skill.title}</h3>
+        <p class="skill-description">{skill.description}</p>
+        <div class="progress-container">
+          <div class="progress-bar"></div>
+        </div>
+        <br>
+        <div class="skill-percentage">{skill.progress}% confidenza</div>
       </div>
     ))}
   </div>
 </section>
+
 <style>
+  /* Variabili di Colore */
+  :root {
+    --primary: #00ffea;       /* Ciano neon */
+    --secondary: #ff00f7;     /* Magenta neon */
+    --background: #0d0d0d;    /* Sfondo ultra scuro */
+    --accent: #ffffff;        /* Accenti in bianco */
+    --code-bg: #1a1a1a;       /* Sfondo terminal */
+    --border-color: rgba(255, 255, 255, 0.2);
+  }
+
   .skills {
-    padding: 2rem;
-    background: var(--dark);
+    position: relative; /* Necessario per il posizionamento assoluto dello pseudo-elemento */
+    padding: 4rem 2rem;
+    background-color: var(--background); /* Sfondo di base */
+    overflow: hidden;
   }
+
+  /* Nuovo background aggiuntivo con effetto radiale */
+  .skills::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Effetto radiale traslucido per dare profondità e texture */
+    background: radial-gradient(circle at center, rgba(0, 255, 234, 0.1), transparent 50%);
+    z-index: 0;
+  }
+
   .skills h2 {
-    color: var(--light);
+    position: relative;
+    color: var(--accent);
     text-align: center;
-    margin-bottom: 2rem;
+    margin-bottom: 3rem;
+    z-index: 1; /* Per stare sopra lo pseudo-elemento */
   }
+
+  .skills-grid {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 3rem;
+  }
+
   .skill-card {
-    background: var(--darker);
-    padding: 2rem;
-    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.08);
+    padding: 2.5rem;
+    border-radius: 12px;
     text-align: center;
-    transition: transform 0.3s ease;
+    border: 1px solid var(--border-color);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
   }
-  .skill-card h3 {
-    color: var(--light);
+
+  .skill-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 0 20px var(--primary);
+  }
+
+  .skill-icon-wrapper {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+    transition: background-color 0.3s ease;
+  }
+
+  .skill-card:hover .skill-icon-wrapper {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+
+  .skill-icon-wrapper i {
+    font-size: 3rem;
+    color: var(--primary);
+    transition: color 0.3s ease;
+  }
+
+  .skill-card:hover .skill-icon-wrapper i {
+    color: var(--secondary);
+  }
+
+  .skill-description {
+    color: var(--accent);
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .progress-container {
+    height: 10px;
+    margin: 1rem 0;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .progress-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.3);
+    transition: transform 0.5s ease-in-out;
+    transform: translateX(-100%);
+  }
+
+  .skill-card:hover .progress-container::before {
+    transform: translateX(0);
+  }
+
+  .progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    border-radius: 5px;
+    width: 0;
+    transition: width 0.8s ease-in-out;
+  }
+
+  .skill-card:hover .progress-bar {
+    width: calc(var(--progress-width, 0%) + 10%);
+  }
+
+  .skill-percentage {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--accent);
+    font-weight: bold;
+    font-size: 0.9rem;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .skill-card:hover .skill-percentage {
+    opacity: 1;
   }
 </style>
+
+<script>
+  const skillCards = document.querySelectorAll('.skill-card');
+  skillCards.forEach(card => {
+    const progress = (card as HTMLElement).dataset.progress;
+    (card as HTMLElement).style.setProperty('--progress-width', `${progress}%`);
+  });
+</script>
