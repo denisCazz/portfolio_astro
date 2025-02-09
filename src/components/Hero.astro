@@ -85,13 +85,16 @@
 
 <script>
   // Inizializza l'effetto Matrix sul canvas
-  const canvas = document.getElementById('matrix-canvas') as HTMLCanvasElement;
+  const canvas = document.getElementById('matrix-canvas') as HTMLCanvasElement | null;
+  if (!canvas) throw new Error("Canvas not found");
   const ctx = canvas.getContext('2d');
 
   // Imposta le dimensioni iniziali del canvas
   function setCanvasSize() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    if(canvas){
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
   }
   setCanvasSize();
 
@@ -108,7 +111,9 @@
     if (ctx) {
       // Fai un leggero overlay nero per creare l'effetto dissolvenza dei caratteri precedenti
       ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      if (canvas) {
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+      }
       
       ctx.fillStyle = "#0F0"; // Colore verde dei caratteri
       ctx.font = fontSize + "px monospace";
@@ -119,7 +124,7 @@
         ctx.fillText(text, i * fontSize, drops[i] * fontSize);
         
         // Se il carattere ha raggiunto la fine dello schermo, probabilmente ricomincia dalla cima
-        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+        if (canvas && drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
           drops[i] = 0;
         }
         drops[i]++;

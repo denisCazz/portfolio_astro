@@ -261,3 +261,23 @@ body {
     font-size: 2.4rem;
   }
 }
+
+/* Scrollbar personalizzata per desktop */
+@media (min-width: 769px) {
+  ::-webkit-scrollbar {
+    width: 12px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--darker);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, var(--primary), var(--secondary));
+    border-radius: 6px;
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+  }
+  /* Firefox support */
+  html {
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary) var(--darker);
+  }
+}

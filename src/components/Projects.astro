@@ -72,35 +72,28 @@ const education = [
 </section>
 
 <style>
-  /* General styles */
-:root {
+  :root {
     --bg-color: #121212;
     --card-bg: #1e1e1e;
     --text-color: #e0e0e0;
     --accent-color: #00ffaa;
     --shadow-color: rgba(0, 0, 0, 0.3);
     --border-color: rgba(0, 255, 170, 0.1);
-    --code-font: 'Roboto Mono', monospace; /* Import this font in your main HTML */
+    --code-font: 'Roboto Mono', monospace;
   }
-
   body {
-    font-family: 'Roboto', sans-serif; /* Default font */
-    background-color: var(--bg-color); /* Set background color for the entire page */
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--bg-color);
     color: var(--text-color);
   }
-
-  /* Utility classes */
-.icon {
+  .icon {
     margin-right: 0.5rem;
     color: var(--accent-color);
   }
-
-  /* Sections */
-.projects,
-.education {
+  .projects,
+  .education {
     padding: 4rem 2rem;
   }
-
   h2 {
     text-align: center;
     font-size: 2rem;
@@ -108,15 +101,12 @@ const education = [
     margin-bottom: 2rem;
     color: var(--text-color);
   }
-
-  /* Projects Section */
-.projects-grid {
+  .projects-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     gap: 2.5rem;
   }
-
-.project-card {
+  .project-card {
     background: var(--card-bg);
     border-radius: 12px;
     overflow: hidden;
@@ -125,31 +115,26 @@ const education = [
     transition: transform 0.2s, box-shadow 0.2s;
     box-shadow: 0 6px 10px var(--shadow-color);
   }
-
-.project-card:hover {
+  .project-card:hover {
     transform: translateY(-8px);
     box-shadow: 0 10px 16px var(--shadow-color);
   }
-
-.project-image {
+  .project-image {
     position: relative;
     overflow: hidden;
   }
-
-.project-card img {
+  .project-card img {
     width: 100%;
     height: 220px;
     object-fit: cover;
     display: block;
     transition: transform 0.3s, opacity 0.3s;
   }
-
-.project-card:hover img {
+  .project-card:hover img {
     transform: scale(1.05);
     opacity: 0.7;
   }
-
-.image-overlay {
+  .image-overlay {
     position: absolute;
     top: 0;
     left: 0;
@@ -159,36 +144,30 @@ const education = [
     opacity: 0;
     transition: opacity 0.3s;
   }
-
-.project-card:hover.image-overlay {
+  .project-card:hover .image-overlay {
     opacity: 1;
   }
-
-.project-info {
+  .project-info {
     padding: 1.75rem;
     font-family: var(--code-font);
   }
-
-.project-info h3 {
+  .project-info h3 {
     font-size: 1.3rem;
     font-weight: 500;
     margin-bottom: 0.75rem;
     color: var(--text-color);
   }
-
-.project-info p {
+  .project-info p {
     font-size: 1.05rem;
     color: #ddd;
   }
-
-.tags {
+  .tags {
     display: flex;
     flex-wrap: wrap;
     gap: 0.6rem;
     margin-top: 1.25rem;
   }
-
-.tech-tag {
+  .tech-tag {
     background-color: rgba(0, 255, 170, 0.15);
     color: var(--accent-color);
     padding: 0.5rem 1rem;
@@ -197,20 +176,16 @@ const education = [
     border: 1px solid rgba(0, 255, 170, 0.3);
     transition: background-color 0.2s, color 0.2s;
   }
-
-.tech-tag:hover {
+  .tech-tag:hover {
     background-color: rgba(0, 255, 170, 0.3);
     color: #222;
   }
-
-  /* Education Section */
-.timeline {
+  .timeline {
     display: flex;
     flex-direction: column;
     align-items: center;
   }
-
-.timeline-item {
+  .timeline-item {
     position: relative;
     padding: 1.5rem;
     background: var(--card-bg);
@@ -224,38 +199,31 @@ const education = [
     transition: transform 0.2s, box-shadow 0.2s;
     font-family: var(--code-font);
   }
-
-.timeline-item:hover {
+  .timeline-item:hover {
     transform: translateY(-3px);
     box-shadow: 0 6px 8px var(--shadow-color);
   }
-
-.year {
+  .year {
     font-size: 1.2rem;
     font-weight: 500;
     color: var(--accent-color);
     margin-bottom: 0.75rem;
   }
-
-.details h3 {
+  .details h3 {
     font-size: 1.15rem;
     font-weight: 500;
     color: var(--text-color);
     margin-bottom: 0.5rem;
   }
-
-.details p {
+  .details p {
     font-size: 1rem;
     color: #ddd;
   }
-
-  /* Media Queries */
   @media (max-width: 768px) {
-  .projects-grid {
+    .projects-grid {
       grid-template-columns: 1fr;
     }
-
-  .timeline-item {
+    .timeline-item {
       width: 95%;
     }
   }

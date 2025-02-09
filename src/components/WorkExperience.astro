@@ -1,19 +1,20 @@
 ---
 // src/components/WorkExperience.astro
 const jobs = [
+  // Esperienza per Tesisquare
   {
-    title: "Web Developer",
-    company: "Azienda X",
-    years: "2022 - Presente",
-    description: "Sviluppo di applicazioni web innovative con tecnologie all'avanguardia. Collaborazione con team di designer e sviluppatori per creare esperienze utente di alta qualità. Implementazione di soluzioni di backend robuste e scalabili.",
+    title: "Supply Chain IT Developer",
+    company: "Tesisquare",
+    years: "2021 - Presente",
+    description: "Sviluppatore software specializzato in soluzioni per la gestione della supply chain, con particolare attenzione alla logistica e al trasporto merci.",
   },
+  // Esperienza per Progetti Personali (aggiornata)
   {
-    title: "Frontend Developer",
-    company: "Startup Y",
-    years: "2021 - 2022",
-    description: "Creazione di interfacce utente accattivanti e responsive per diverse piattaforme. Ottimizzazione delle prestazioni e dell'accessibilità dei siti web. Collaborazione con il team di marketing per migliorare la user experience.",
+    title: "Freelance Web Developer",
+    company: "Progetti Personali",
+    years: "Dal 2019, come hobby",
+    description: "Realizzazione di siti web a tempo libero, sperimentando design intuitivi e al passo con i tempi, utilizzando le migliori tecnologie sul mercato.",
   },
-  // ... altri lavori
 ];
 ---
 
@@ -21,7 +22,7 @@ const jobs = [
   <h2><span class="icon">💼</span> Esperienze Lavorative</h2>
   <div class="work-grid">
     {jobs.map((job) => (
-      <div class="work-card">
+      <div class={`work-card ${job.company === "Tesisquare" ? "supply-chain" : (job.company === "Progetti Personali" ? "personal-projects" : "")}`}>
         <div class="work-header">
           <h3>{job.title}</h3>
           <span class="company">{job.company}</span>
@@ -61,12 +62,28 @@ const jobs = [
     gap: 2rem;
   }
 
+  /* Aggiunta di media query per rendere responsive la griglia */
+  @media (max-width: 768px) {
+    .work-grid {
+      grid-template-columns: 1fr;
+    }
+    .work-header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .work-header span {
+      margin-top: 0.5rem;
+    }
+  }
+
   .work-card {
     background-color: rgba(255, 255, 255, 0.05);
     border: 1px solid var(--border-color);
     padding: 2rem;
     border-radius: 10px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
   }
 
   .work-card:hover {
@@ -74,11 +91,66 @@ const jobs = [
     box-shadow: 0 0 15px rgba(0, 255, 234, 0.3);
   }
 
+  /* Aggiornato: effetto per Tesisquare con animazione camion (da destra a sinistra) */
+  .supply-chain {
+    border: 2px solid transparent;
+    border-image: linear-gradient(45deg, #ff6ec4, #7873f5) 1;
+    animation: chainPulse 2s infinite;
+    position: relative;
+  }
+
+  @keyframes chainPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.03); }
+  }
+
+  .supply-chain::after {
+    content: "🚚";
+    position: absolute;
+    bottom: 10px;
+    left: 100%;  /* Inizia dal bordo destro */
+    font-size: 2rem;
+    animation: truckMoveRev 6s linear infinite;
+  }
+
+  @keyframes truckMoveRev {
+    0%   { left: 100%; }
+    100% { left: -50px; }  /* Termina fuori dal bordo sinistro */
+  }
+
+  /* Nuovo effetto per Progetti Personali */
+  .personal-projects {
+    position: relative;
+    border: 2px solid transparent;
+    border-image: linear-gradient(45deg, #fa709a, #fee140) 1;
+    animation: personalPulse 2s infinite;
+  }
+  @keyframes personalPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+  }
+
+  /* Reimpostazione posizione e animazione per l'icona PC */
+  .personal-projects::after {
+    content: "💻";
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    font-size: 2rem;
+    animation: computerPulse 4s ease-in-out infinite;
+  }
+  @keyframes computerPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+  }
+
   .work-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 1rem;
+    position: relative;
+    z-index: 2;
   }
 
   .work-header h3 {

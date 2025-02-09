@@ -34,17 +34,21 @@ import '../styles/global.css';
       const backToTopButton = document.getElementById('back-to-top-btn');
 
       window.onscroll = function () {
-        if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
-          backToTopButton.style.display = 'block';
-        } else {
-          backToTopButton.style.display = 'none';
+        if(backToTopButton){
+          if ((document.body.scrollTop > 200 || document.documentElement.scrollTop > 200)) {
+            backToTopButton.style.display = 'block';
+          } else {
+            backToTopButton.style.display = 'none';
+          }
         }
       };
 
-      backToTopButton.addEventListener('click', () => {
-        document.body.scrollTop = 0; // For Safari
-        document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
-      });
+      if(backToTopButton){
+        backToTopButton.addEventListener('click', () => {
+          document.body.scrollTop = 0; // For Safari
+          document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+        });
+      }
     </script>
 
     <style>
