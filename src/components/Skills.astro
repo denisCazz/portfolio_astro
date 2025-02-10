@@ -177,12 +177,33 @@ const skills = [
   .skill-card:hover .skill-percentage {
     opacity: 1;
   }
+
+.skill-card:hover .progress-container::before,
+.skill-card.active .progress-container::before {
+  transform: translateX(0);
+}
+
+.skill-card:hover .progress-bar,
+.skill-card.active .progress-bar {
+  width: calc(var(--progress-width, 0%) + 10%);
+}
+
+.skill-card:hover .skill-percentage,
+.skill-card.active .skill-percentage {
+  opacity: 1;
+}
 </style>
 
 <script>
-  const skillCards = document.querySelectorAll('.skill-card');
+   const skillCards = document.querySelectorAll('.skill-card');
   skillCards.forEach(card => {
-    const progress = (card as HTMLElement).dataset.progress;
-    (card as HTMLElement).style.setProperty('--progress-width', `${progress}%`);
+    // Imposta la larghezza del progresso in base al data attribute
+    const progress = card.dataset.progress;
+    card.style.setProperty('--progress-width', `${progress}%`);
+
+    // Aggiungi il listener per il click
+    card.addEventListener('click', () => {
+      card.classList.toggle('active');
+    });
   });
 </script>
