@@ -8,12 +8,12 @@
 
   <!-- Contenitore centrale per il contenuto testuale -->
   <div class="hero-content">
-    <h1>Benvenuto nel mio Portfolio</h1>
+    <h1>Hello world!</h1>
     <p class="typing-effect">
-      Sono uno sviluppatore full-stack con una passione per il codice pulito e le soluzioni innovative.
+      Benvenut* sul mio sito portfolio.
     </p>
     <p class="extra-text">
-      Esplora il mio lavoro e scopri come trasformo idee in realtà digitali.
+      Abbandona i classici CV ed esplora questo sito per sapere chi sono.
     </p>
   </div>
 </section>
@@ -81,6 +81,26 @@
       font-size: 1.2rem;
     }
   }
+
+.typing-effect {
+  overflow: hidden;             /* Nasconde il testo in eccesso */
+  white-space: nowrap;          /* Impedisce il wrap del testo */
+  border-right: 2px solid var(--light);  /* Cursore lampeggiante */
+  width: 0;                     /* Inizialmente nascosto */
+  animation: typing 3s steps(40, end) forwards, blink-caret 0.75s step-end infinite;
+}
+
+/* Animazione per "scrivere" il testo */
+@keyframes typing {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+/* Animazione per il cursore lampeggiante */
+@keyframes blink-caret {
+  from, to { border-color: transparent; }
+  50% { border-color: var(--light); }
+}
 </style>
 
 <script>
