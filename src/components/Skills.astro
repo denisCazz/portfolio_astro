@@ -195,9 +195,10 @@ const skills = [
 </style>
 
 <script>
-   const skillCards = document.querySelectorAll('.skill-card');
+   // Cast della NodeList al tipo HTMLElement
+  const skillCards = document.querySelectorAll('.skill-card') as NodeListOf<HTMLElement>;
+
   skillCards.forEach(card => {
-    // Imposta la larghezza del progresso in base al data attribute
     const progress = card.dataset.progress;
     card.style.setProperty('--progress-width', `${progress}%`);
 
