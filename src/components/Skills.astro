@@ -9,6 +9,13 @@ const skills = [
   { icon: "fa-brands fa-jenkins", title: "Jenkins", progress: 80, description: "CI/CD Pipelines, Automation, DevOps" },
   { icon: "fa-solid fa-database", title: "SQL", progress: 85, description: "Oracle, MSSQL, Database Design, Query Optimization" },
 ];
+
+const getLevel = (progress: number) => {
+  if (progress >= 90) return "Esperto";
+  else if (progress >= 75) return "Avanzato";
+  else if (progress >= 50) return "Intermedio";
+  else return "Base";
+};
 ---
 
 <section id="skills" class="skills">
@@ -25,7 +32,7 @@ const skills = [
           <div class="progress-bar"></div>
         </div>
         <br>
-        <div class="skill-percentage">{skill.progress}% confidenza</div>
+        <div class="skill-level">{getLevel(skill.progress)}</div>
       </div>
     ))}
   </div>
@@ -111,8 +118,11 @@ const skills = [
   }
 
   .skill-icon-wrapper i {
+    display: block;
+    margin: 0 auto;
     font-size: 3rem;
     color: var(--primary);
+    line-height: 1;
     transition: color 0.3s ease;
   }
 
@@ -191,6 +201,12 @@ const skills = [
 .skill-card:hover .skill-percentage,
 .skill-card.active .skill-percentage {
   opacity: 1;
+}
+
+.skill-level {
+  color: var(--accent);
+  font-weight: bold;
+  font-size: 1rem;
 }
 </style>
 
