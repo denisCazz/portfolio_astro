@@ -1,0 +1,147 @@
+---
+//componente di astro dedicato ai progetti in corso. 
+
+const wipProjects = [
+  {
+    title: "Tesseract",
+    description: "Progetto in cantiere per una azienda che si occupa di servizi di AI. In sviluppo con Astro e Tailwind CSS. Premi qui per saperne di più.",
+    image: "tesseract.webp", // assicurati che il file esista in /public
+    link: "https://deniscazz.github.io/tesseract/",
+    tags: ["LLM", "Services", "AI"]
+  },
+  {
+    title: "Altro in arrivo...",
+    description: "Something cool is coming soon!",
+    image: "wip.jpg",
+    link: "#",
+    tags: ["Coming soon"]
+  },
+];
+
+---
+<section id="wip-projects" class="wip-projects">
+  <h2><span class="icon">🚧</span> Progetti in Cantiere</h2>
+  <div class="wip-projects-grid">
+    {wipProjects.map((project) => (
+      <a href={project.link} target="_blank" class="project-card">
+        <div class="project-image">
+          <img src={project.image} alt={project.title} loading="lazy" />
+          <div class="image-overlay"></div>
+        </div>
+        <div class="project-info">
+          <h3>{project.title}</h3>
+          <p>{project.description}</p>
+        </div>
+        {project.tags.length > 0 && (
+        <div class="tags">
+          {project.tags.map((tag) => (
+            <span class="tech-tag">{tag}</span>
+          ))}
+        </div>
+        )}
+      </a>
+    ))}
+  </div>
+</section>
+
+<style>
+  /* Nuovo stile per una grafica moderna */
+  .wip-projects {
+    padding: 4rem 2rem;
+    background-color: var(--background);
+  }
+  .wip-projects h2 {
+    text-align: center;
+    font-size: 2rem;
+    color: var(--accent);
+    margin-bottom: 2rem;
+  }
+  .wip-projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+  }
+  .project-card {
+    background: #1a1a1a;
+    border: 1px solid transparent;
+    border-image: linear-gradient(45deg, var(--primary), var(--secondary)) 1;
+    border-radius: 12px;
+    overflow: hidden;
+    text-decoration: none;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+  }
+  .project-card:hover {
+    transform: scale(1.02);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.6);
+    border-image: linear-gradient(45deg, var(--secondary), var(--primary)) 1;
+  }
+  .project-image {
+    position: relative;
+    overflow: hidden;
+  }
+  .project-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+    image-rendering: auto;  /* Garantisce una resa migliore se l'immagine è ad alta risoluzione */
+  }
+  .project-card:hover img {
+    transform: scale(1.08);
+  }
+  .image-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  .project-card:hover .image-overlay {
+    opacity: 1;
+  }
+  .project-info {
+    padding: 1.5rem;
+    font-family: 'Roboto Mono', monospace;
+    color: var(--accent);
+    background: linear-gradient(180deg, transparent, rgba(0,0,0,0.6));
+  }
+  .project-info h3 {
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+  }
+  .project-info p {
+    font-size: 1rem;
+    color: #ccc;
+  }
+  .tags {
+    padding: 1rem 1.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    background: #111;
+  }
+  .tech-tag {
+    background: var(--code-bg);
+    color: var(--primary);
+    padding: 0.4rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    transition: background 0.3s ease, color 0.3s ease;
+    border: 1px solid var(--border-color);
+  }
+  .tech-tag:hover {
+    background: var(--secondary);
+    color: #111;
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 480px) {
+    .wip-projects-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

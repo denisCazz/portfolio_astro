@@ -56,12 +56,14 @@
     );
     /* Ombreggiatura per dare profondità */
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    text-align: center; /* Assicura che il contenuto sia centrato */
   }
 
   .hero h1 {
     font-size: 4rem;
     margin-bottom: 1rem;
     color: var(--light);
+    text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.9); /* Aumentato l'effetto */
   }
 
   .typing-effect,
@@ -83,17 +85,19 @@
   }
 
 .typing-effect {
-  overflow: hidden;             /* Nasconde il testo in eccesso */
-  white-space: nowrap;          /* Impedisce il wrap del testo */
-  border-right: 2px solid var(--light);  /* Cursore lampeggiante */
-  width: 0;                     /* Inizialmente nascosto */
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  /* Usa clip-path al posto di width */
+  clip-path: inset(0 100% 0 0);
+  border-right: 2px solid var(--light);
   animation: typing 3s steps(40, end) forwards, blink-caret 0.75s step-end infinite;
 }
 
 /* Animazione per "scrivere" il testo */
 @keyframes typing {
-  from { width: 0; }
-  to { width: 100%; }
+  from { clip-path: inset(0 100% 0 0); }
+  to { clip-path: inset(0 0 0 0); }
 }
 
 /* Animazione per il cursore lampeggiante */
