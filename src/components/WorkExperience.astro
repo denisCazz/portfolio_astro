@@ -34,6 +34,29 @@ const jobs = [
   </div>
 </section>
 
+<section id="clients" class="clients">
+  <h2><span class="icon">🌐</span> Creazione di Siti Web</h2>
+  <p class="intro">
+    Vuoi portare la tua idea online? Creiamo insieme il tuo sito web personalizzato, ottimizzato per ogni esigenza. Dai un’occhiata ai progetti che ho realizzato e contattami per discutere del tuo!
+  </p>
+  <div class="client-projects">
+    <div class="project-card">
+      <h3>LangAmore Pollenzo</h3>
+      <p>Un sito web elegante e funzionale per un'attività legata alla gastronomia locale.</p>
+      <a href="https://www.langamorepollenzo.it/" target="_blank">Visita il sito</a>
+    </div>
+    <div class="project-card">
+      <h3>Sartoria Kristina</h3>
+      <p>Un portale moderno per una sartoria, con un design accattivante e personalizzato.</p>
+      <a href="https://sartoriakristina.it/" target="_blank">Visita il sito</a>
+    </div>
+  </div>
+  <div class="cta">
+    <h3>Interessato a lavorare insieme?</h3>
+    <a href="#contact" class="btn-primary">Contattami</a>
+  </div>
+</section>
+
 <style>
   /* ... variabili di colore (se non definite globalmente) ... */
   :root {
@@ -173,4 +196,97 @@ const jobs = [
     color: rgba(255, 255, 255, 0.8);
     line-height: 1.5;
   }
+
+ .clients {
+    padding: 4rem 2rem;
+    background-color: var(--background);
+    border-top: 2px solid var(--border-color);
+  }
+
+  .clients h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    color: var(--accent);
+    margin-bottom: 1rem;
+  }
+
+  .clients .intro {
+    text-align: center;
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 3rem;
+  }
+
+  .client-projects {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+  }
+
+  .project-card {
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border-color);
+    padding: 2rem;
+    border-radius: 10px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    max-width: 300px;
+  }
+
+  .project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 15px rgba(0, 255, 234, 0.3);
+  }
+
+  .project-card h3 {
+    font-size: 1.5rem;
+    color: var(--accent);
+    margin-bottom: 1rem;
+  }
+
+  .project-card p {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 1rem;
+  }
+
+  .project-card a {
+    font-size: 1rem;
+    color: var(--primary);
+    text-decoration: none;
+    border-bottom: 1px solid var(--primary);
+    transition: color 0.3s ease;
+  }
+
+  .project-card a:hover {
+    color: var(--secondary);
+  }
+
+  .cta {
+    text-align: center;
+    margin-top: 2rem;
+  }
+
+  .cta h3 {
+    font-size: 1.5rem;
+    color: var(--accent);
+    margin-bottom: 1rem;
+  }
+
+  .btn-primary {
+    padding: 0.8rem 1.5rem;
+    background: var(--primary);
+    color: var(--background);
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background 0.3s ease;
+  }
+
+  .btn-primary:hover {
+    background: var(--secondary);
+  }
+
 </style>
