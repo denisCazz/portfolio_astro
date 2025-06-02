@@ -7,7 +7,13 @@
     <div class="footer-content">
       <div class="footer-brand">
         <h3>Denis Cazzulo</h3>
-        <p>Full-Stack Developer & Supply Chain IT Specialist</p>
+        <p>Supply Chain IT Developer & AI Specialist</p>
+        <p class="footer-website">
+          <a href="https://bitora.it/" target="_blank" rel="noopener noreferrer">
+            <i class="fas fa-globe"></i>
+            Bitora.it - Transizione Tecnologica
+          </a>
+        </p>
       </div>
       
       <div class="footer-links">
@@ -73,6 +79,25 @@
   .footer-brand p {
     color: var(--text-secondary);
     font-size: 0.875rem;
+    margin-bottom: var(--space-2);
+  }
+
+  .footer-website {
+    margin-top: var(--space-3) !important;
+  }
+
+  .footer-website a {
+    color: var(--primary);
+    text-decoration: none;
+    font-size: 0.875rem;
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    transition: color var(--transition-normal);
+  }
+
+  .footer-website a:hover {
+    color: var(--accent);
   }
 
   .footer-links {
@@ -135,8 +160,18 @@
 
   .social-link i {
     font-size: 1.125rem;
-    width: 20px;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     text-align: center;
+    flex-shrink: 0;
+    color: var(--primary);
+  }
+
+  .social-link:hover i {
+    color: var(--accent);
   }
 
   .footer-bottom {

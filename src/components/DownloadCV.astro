@@ -74,6 +74,12 @@ const cvLinks = {
     background: var(--bg-tertiary);
     border-radius: 50%;
     border: 2px solid var(--border-primary);
+    width: 120px;
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
   }
 
   .cv-content h2 {
@@ -102,12 +108,16 @@ const cvLinks = {
   }
 
   .cv-button {
-    display: flex;
+    display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: var(--space-3);
-    padding: var(--space-4) var(--space-6);
+    padding: var(--space-4) var(--space-8);
     font-size: 1.125rem;
+    font-weight: 600;
     position: relative;
+    min-width: 200px;
+    white-space: nowrap;
   }
 
   .cv-button.disabled {

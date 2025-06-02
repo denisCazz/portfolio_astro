@@ -8,14 +8,16 @@ const experiences = [
     location: "Italia",
     period: "2021 - Presente",
     type: "Full-time",
-    description: "Sviluppatore software specializzato in soluzioni per la gestione della supply chain, con particolare attenzione alla logistica e al trasporto merci. Responsabile dello sviluppo di applicazioni enterprise per l'ottimizzazione dei processi logistici.",
+    description: "Sviluppatore software specializzato in soluzioni per la gestione della supply chain, con particolare attenzione alla logistica e al trasporto merci. Utilizzo ColdFusion, SQL e JavaScript per sviluppare applicazioni enterprise. Partecipo attivamente a panel sull'Intelligenza Artificiale e le sue applicazioni nel settore logistico.",
     responsibilities: [
-      "Sviluppo di applicazioni web per la gestione della supply chain",
+      "Sviluppo di applicazioni web con ColdFusion per la gestione della supply chain",
+      "Gestione database con SQL avanzato e ottimizzazione query",
+      "Sviluppo frontend con JavaScript per interfacce user-friendly",
+      "Partecipazione a panel AI per innovazione nel settore logistico",
       "Integrazione di sistemi ERP e WMS",
-      "Ottimizzazione dei processi logistici attraverso soluzioni IT",
       "Collaborazione con team internazionali"
     ],
-    technologies: ["JavaScript", "Python", "SQL", "Oracle", "Cloud Services"],
+    technologies: ["ColdFusion", "SQL", "JavaScript", "Oracle", "AI Technologies"],
     icon: "fas fa-truck",
     color: "var(--secondary)"
   },
@@ -41,6 +43,13 @@ const experiences = [
 
 const clientProjects = [
   {
+    name: "Bitora.it",
+    description: "Piattaforma web moderna per la transizione tecnologica delle aziende, con focus su innovazione digitale",
+    url: "https://bitora.it/",
+    image: "🚀",
+    technologies: ["Modern Web Stack", "Digital Innovation", "UX/UI Design"]
+  },
+  {
     name: "LangAmore Pollenzo",
     description: "Sito web elegante per attività gastronomica locale con focus su tradizione e qualità",
     url: "https://www.langamorepollenzo.it/",
@@ -53,6 +62,43 @@ const clientProjects = [
     url: "https://sartoriakristina.it/",
     image: "✂️",
     technologies: ["HTML5", "CSS3", "JavaScript"]
+  }
+];
+
+const education = [
+  {
+    id: "master-ai",
+    title: "Master in Intelligenza Artificiale",
+    institution: "Università",
+    location: "Italia",
+    period: "2023 - 2024",
+    type: "Master",
+    description: "Specializzazione avanzata in Intelligenza Artificiale, Machine Learning e tecnologie emergenti. Focus su applicazioni pratiche dell'AI nel mondo enterprise.",
+    icon: "fas fa-brain",
+    color: "var(--primary)"
+  },
+  {
+    id: "laurea-informatica",
+    title: "Laurea in Informatica",
+    institution: "Università",
+    location: "Italia", 
+    period: "2018 - 2021",
+    type: "Laurea Triennale",
+    description: "Conseguita con votazione 105/110. Formazione completa in programmazione, algoritmi, basi di dati e ingegneria del software.",
+    grade: "105/110",
+    icon: "fas fa-graduation-cap",
+    color: "var(--secondary)"
+  },
+  {
+    id: "diploma",
+    title: "Diploma in Informatica", 
+    institution: "Istituto Giancarlo Valluri",
+    location: "Fossano, Italia",
+    period: "2013 - 2018",
+    type: "Diploma Superiore",
+    description: "Formazione tecnica in informatica con solide basi di programmazione, sistemi informatici e tecnologie web.",
+    icon: "fas fa-school",
+    color: "var(--accent)"
   }
 ];
 ---
@@ -119,6 +165,51 @@ const clientProjects = [
   </div>
 </section>
 
+<section class="education-section">
+  <div class="container">
+    <div class="section-header text-center">
+      <h2>Formazione</h2>
+      <p class="section-description">
+        Il mio percorso formativo nell'informatica e nell'intelligenza artificiale
+      </p>
+    </div>
+
+    <div class="timeline">
+      {education.map((edu, index) => (
+        <div class="timeline-item" data-aos="fade-up" data-aos-delay={index * 200}>
+          <div class="timeline-marker">
+            <div class="timeline-icon" style={`background: ${edu.color}`}>
+              <i class={edu.icon}></i>
+            </div>
+          </div>
+          
+          <div class="timeline-content glass glass-hover">
+            <div class="experience-header">
+              <div class="experience-title">
+                <h3>{edu.title}</h3>
+                <div class="company-info">
+                  <span class="company">{edu.institution}</span>
+                  <span class="location">
+                    <i class="fas fa-map-marker-alt"></i>
+                    {edu.location}
+                  </span>
+                </div>
+              </div>
+              <div class="experience-meta">
+                <span class="period">{edu.period}</span>
+                <span class="type" style={`color: ${edu.color}`}>{edu.type}</span>
+                {edu.grade && <span class="grade">Voto: {edu.grade}</span>}
+              </div>
+            </div>
+            
+            <p class="experience-description">{edu.description}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
 <section class="client-work-section">
   <div class="container">
     <div class="section-header text-center">
@@ -168,6 +259,11 @@ const clientProjects = [
 <style>
   .experience-section {
     background: var(--bg-primary);
+    position: relative;
+  }
+
+  .education-section {
+    background: var(--bg-tertiary);
     position: relative;
   }
 
@@ -323,6 +419,15 @@ const clientProjects = [
     font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 0.05em;
+  }
+
+  .grade {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--accent);
+    background: rgba(255, 255, 255, 0.1);
+    padding: var(--space-1) var(--space-2);
+    border-radius: var(--radius-sm);
   }
 
   .experience-description {

@@ -7,11 +7,11 @@
     <div class="hero-content">
       <h1 class="animate-fade-in-up">Denis Cazzulo</h1>
       <p class="hero-subtitle animate-fade-in-up">
-        Full Stack Developer & AI Specialist
+        Supply Chain IT Developer & AI Specialist
       </p>
       <p class="hero-description animate-fade-in-up">
-        Trasformo idee innovative in soluzioni digitali all'avanguardia, 
-        combinando sviluppo web moderno e intelligenza artificiale.
+        Laureato in Informatica (105/110) con Master in AI, specializzato in soluzioni enterprise per la supply chain. 
+        Combino ColdFusion, SQL e JavaScript per creare applicazioni innovative nel settore logistico.
       </p>
       <div class="hero-cta animate-fade-in-up">
         <a href="#projects" class="btn btn-primary">
@@ -29,16 +29,19 @@
   <!-- Floating elements for visual appeal -->
   <div class="floating-elements">
     <div class="floating-element" style="top: 20%; left: 10%; animation-delay: 0s;">
-      <i class="fab fa-react"></i>
+      <i class="fas fa-database"></i>
     </div>
     <div class="floating-element" style="top: 30%; right: 15%; animation-delay: 1s;">
-      <i class="fab fa-python"></i>
+      <i class="fab fa-js-square"></i>
     </div>
     <div class="floating-element" style="bottom: 25%; left: 20%; animation-delay: 2s;">
-      <i class="fab fa-js-square"></i>
+      <i class="fas fa-code"></i>
     </div>
     <div class="floating-element" style="top: 60%; right: 25%; animation-delay: 3s;">
       <i class="fas fa-brain"></i>
+    </div>
+    <div class="floating-element" style="bottom: 40%; right: 10%; animation-delay: 4s;">
+      <i class="fas fa-truck"></i>
     </div>
   </div>
 </section>
@@ -107,14 +110,14 @@
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        entry.target.style.animationPlayState = 'running';
+        (entry.target as HTMLElement).style.animationPlayState = 'running';
       }
     });
   }, observerOptions);
 
   // Observe all animated elements
   document.querySelectorAll('.animate-fade-in-up').forEach(el => {
-    el.style.animationPlayState = 'paused';
+    (el as HTMLElement).style.animationPlayState = 'paused';
     observer.observe(el);
   });
 </script>

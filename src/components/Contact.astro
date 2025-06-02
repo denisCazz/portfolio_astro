@@ -24,7 +24,7 @@
         </a>
       </div>
 
-      <div class="social-section" data-aos="fade-up" data-aos-delay="200">
+      <div class="social-section glass glass-hover" data-aos="fade-up" data-aos-delay="200">
         <h3>Seguimi sui Social</h3>
         <div class="social-links">
           <a href="https://www.linkedin.com/in/denis-cazzulo-b56b551a9/" target="_blank" rel="noopener noreferrer" class="social-link">
@@ -93,6 +93,12 @@
     background: var(--bg-tertiary);
     border-radius: 50%;
     border: 2px solid var(--border-primary);
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
   }
 
   .contact-card h3 {
@@ -112,13 +118,15 @@
     display: inline-block;
     color: var(--primary);
     text-decoration: none;
-    font-size: 1.25rem;
+    font-size: 1.125rem;
     font-weight: 600;
-    padding: var(--space-3) var(--space-6);
+    padding: var(--space-4) var(--space-6);
     border: 2px solid var(--primary);
     border-radius: var(--radius-lg);
     transition: all var(--transition-normal);
     background: transparent;
+    word-break: break-all;
+    max-width: 100%;
   }
 
   .contact-link:hover {
@@ -131,6 +139,8 @@
   .social-section {
     text-align: center;
     margin-bottom: var(--space-12);
+    padding: var(--space-10);
+    border-radius: var(--radius-xl);
   }
 
   .social-section h3 {
@@ -153,12 +163,13 @@
     gap: var(--space-2);
     padding: var(--space-6);
     border-radius: var(--radius-lg);
-    background: var(--bg-tertiary);
+    background: rgba(255, 255, 255, 0.05);
     border: 1px solid var(--border-primary);
     color: var(--text-primary);
     text-decoration: none;
     transition: all var(--transition-normal);
     min-width: 120px;
+    backdrop-filter: blur(10px);
   }
 
   .social-link:hover {
@@ -170,6 +181,12 @@
   .social-link i {
     font-size: 2rem;
     color: var(--primary);
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
   }
 
   .social-link span {
@@ -203,7 +220,13 @@
 
   .btn-lg {
     font-size: 1.125rem;
+    font-weight: 600;
     padding: var(--space-4) var(--space-8);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-3);
+    white-space: nowrap;
   }
 
   /* Mobile Responsive */

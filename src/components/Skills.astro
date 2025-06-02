@@ -2,46 +2,46 @@
 // src/components/Skills.astro
 const skills = [
   { 
-    icon: "fas fa-brain", 
-    title: "Intelligenza Artificiale", 
+    icon: "fas fa-server", 
+    title: "ColdFusion", 
     progress: 90, 
-    description: "Large Language Models, Machine Learning, Deep Learning",
-    color: "var(--primary)"
-  },
-  { 
-    icon: "fab fa-python", 
-    title: "Python", 
-    progress: 85, 
-    description: "Data Science, AI/ML, Backend Development, Automation",
-    color: "var(--accent)"
-  },
-  { 
-    icon: "fab fa-js-square", 
-    title: "JavaScript/TypeScript", 
-    progress: 95, 
-    description: "React, Vue, Node.js, Modern Web Development",
-    color: "var(--warning)"
-  },
-  { 
-    icon: "fas fa-cloud", 
-    title: "Cloud & DevOps", 
-    progress: 80, 
-    description: "AWS, Docker, Kubernetes, CI/CD, Infrastructure as Code",
+    description: "Enterprise Web Development, CFML, Application Server",
     color: "var(--secondary)"
   },
   { 
     icon: "fas fa-database", 
-    title: "Database", 
+    title: "SQL & Database", 
+    progress: 95, 
+    description: "Oracle, PostgreSQL, Query Optimization, Data Modeling",
+    color: "var(--primary)"
+  },
+  { 
+    icon: "fab fa-js-square", 
+    title: "JavaScript", 
+    progress: 90, 
+    description: "Frontend Development, DOM Manipulation, Modern ES6+",
+    color: "var(--warning)"
+  },
+  { 
+    icon: "fas fa-truck", 
+    title: "Supply Chain IT", 
     progress: 85, 
-    description: "SQL, NoSQL, Oracle, PostgreSQL, MongoDB",
+    description: "Logistics Software, ERP Integration, WMS Solutions",
     color: "var(--accent)"
   },
   { 
-    icon: "fas fa-mobile-alt", 
-    title: "Full Stack", 
-    progress: 90, 
-    description: "Frontend, Backend, API Design, Mobile Development",
+    icon: "fas fa-brain", 
+    title: "Intelligenza Artificiale", 
+    progress: 80, 
+    description: "Machine Learning, AI Panel Participation, Innovation",
     color: "var(--primary)"
+  },
+  { 
+    icon: "fas fa-code", 
+    title: "Web Development", 
+    progress: 95, 
+    description: "Full Stack Development, Modern Frameworks, Responsive Design",
+    color: "var(--secondary)"
   }
 ];
 
@@ -139,7 +139,14 @@ const getLevel = (progress: number) => {
     background: var(--bg-tertiary);
     border-radius: var(--radius-lg);
     font-size: 1.75rem;
-    border: 1px solid var(--border-primary);
+    border: 2px solid var(--border-primary);
+    transition: all var(--transition-normal);
+  }
+
+  .skill-card:hover .skill-icon {
+    transform: scale(1.1);
+    border-color: var(--primary);
+    box-shadow: 0 5px 15px rgba(0, 217, 255, 0.3);
   }
 
   .skill-info {
