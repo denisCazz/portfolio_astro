@@ -26,14 +26,25 @@
 
       <div class="social-section glass glass-hover" data-aos="fade-up" data-aos-delay="200">
         <h3>Seguimi sui Social</h3>
-        <div class="social-links">
-          <a href="https://www.linkedin.com/in/denis-cazzulo-b56b551a9/" target="_blank" rel="noopener noreferrer" class="social-link">
-            <i class="fab fa-linkedin-in"></i>
-            <span>LinkedIn</span>
+        <p class="social-description">Resta aggiornato sui miei progetti e connettiti con me</p>
+        <div class="social-grid">
+          <a href="https://www.linkedin.com/in/denis-cazzulo-b56b551a9/" target="_blank" rel="noopener noreferrer" class="social-card">
+            <div class="social-icon linkedin">
+              <i class="fab fa-linkedin-in"></i>
+            </div>
+            <div class="social-info">
+              <span class="social-name">LinkedIn</span>
+              <span class="social-desc">Profilo professionale</span>
+            </div>
           </a>
-          <a href="https://github.com/deniscazz" target="_blank" rel="noopener noreferrer" class="social-link">
-            <i class="fab fa-github"></i>
-            <span>GitHub</span>
+          <a href="https://github.com/deniscazz" target="_blank" rel="noopener noreferrer" class="social-card">
+            <div class="social-icon github">
+              <i class="fab fa-github"></i>
+            </div>
+            <div class="social-info">
+              <span class="social-name">GitHub</span>
+              <span class="social-desc">Repository e progetti</span>
+            </div>
           </a>
         </div>
       </div>
@@ -57,10 +68,11 @@
     background: var(--bg-primary);
     position: relative;
     overflow: hidden;
+    padding: var(--space-24) 0;
   }
 
   .section-header {
-    margin-bottom: var(--space-16);
+    margin-bottom: var(--space-20);
   }
 
   .section-description {
@@ -71,15 +83,15 @@
   }
 
   .contact-content {
-    max-width: 800px;
-    margin: 0 auto var(--space-16);
+    max-width: 900px;
+    margin: 0 auto var(--space-20);
   }
 
   .contact-card {
-    padding: var(--space-12);
+    padding: var(--space-16);
     border-radius: var(--radius-xl);
     text-align: center;
-    margin-bottom: var(--space-12);
+    margin-bottom: var(--space-16);
   }
 
   .contact-icon {
@@ -138,29 +150,36 @@
 
   .social-section {
     text-align: center;
-    margin-bottom: var(--space-12);
-    padding: var(--space-10);
+    margin-bottom: var(--space-20);
+    padding: var(--space-16);
     border-radius: var(--radius-xl);
   }
 
   .social-section h3 {
-    font-size: 1.5rem;
+    font-size: 1.75rem;
     font-weight: 700;
     color: var(--text-primary);
+    margin-bottom: var(--space-3);
+  }
+
+  .social-description {
+    color: var(--text-secondary);
     margin-bottom: var(--space-8);
+    font-size: 1.125rem;
   }
 
-  .social-links {
-    display: flex;
-    justify-content: center;
+  .social-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: var(--space-6);
+    max-width: 600px;
+    margin: 0 auto;
   }
 
-  .social-link {
+  .social-card {
     display: flex;
-    flex-direction: column;
     align-items: center;
-    gap: var(--space-2);
+    gap: var(--space-4);
     padding: var(--space-6);
     border-radius: var(--radius-lg);
     background: rgba(255, 255, 255, 0.05);
@@ -168,30 +187,59 @@
     color: var(--text-primary);
     text-decoration: none;
     transition: all var(--transition-normal);
-    min-width: 120px;
     backdrop-filter: blur(10px);
   }
 
-  .social-link:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(0, 217, 255, 0.2);
+  .social-card:hover {
+    background: rgba(255, 255, 255, 0.1);
     border-color: var(--primary);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(0, 217, 255, 0.15);
   }
 
-  .social-link i {
-    font-size: 2rem;
-    color: var(--primary);
-    width: 40px;
-    height: 40px;
+  .social-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: var(--radius-lg);
     display: flex;
     align-items: center;
     justify-content: center;
+    font-size: 1.5rem;
     flex-shrink: 0;
+    transition: all var(--transition-normal);
   }
 
-  .social-link span {
+  .social-icon.linkedin {
+    background: linear-gradient(135deg, #0077b5, #00a0dc);
+    color: white;
+  }
+
+  .social-icon.github {
+    background: linear-gradient(135deg, #333, #666);
+    color: white;
+  }
+
+  .social-card:hover .social-icon {
+    transform: scale(1.1) rotate(5deg);
+  }
+
+  .social-info {
+    flex: 1;
+    text-align: left;
+  }
+
+  .social-name {
+    display: block;
+    font-weight: 600;
+    font-size: 1.125rem;
+    color: var(--text-primary);
+    margin-bottom: var(--space-1);
+  }
+
+  .social-desc {
+    display: block;
     font-size: 0.875rem;
-    font-weight: 500;
+    color: var(--text-secondary);
   }
 
   .cta-section {
@@ -235,14 +283,19 @@
       padding: var(--space-8) var(--space-6);
     }
 
-    .social-links {
-      flex-direction: column;
-      align-items: center;
+    .social-grid {
+      grid-template-columns: 1fr;
       gap: var(--space-4);
     }
 
-    .social-link {
-      min-width: 200px;
+    .social-card {
+      padding: var(--space-4);
+    }
+
+    .social-icon {
+      width: 45px;
+      height: 45px;
+      font-size: 1.25rem;
     }
 
     .cta-content {

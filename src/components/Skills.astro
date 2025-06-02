@@ -113,7 +113,6 @@ const getLevel = (progress: number) => {
   .skills-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: var(--space-8);
   }
 
   .skill-card {
@@ -141,6 +140,33 @@ const getLevel = (progress: number) => {
     font-size: 1.75rem;
     border: 2px solid var(--border-primary);
     transition: all var(--transition-normal);
+    position: relative;
+  }
+
+  .skill-icon i {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+  }
+
+  .emoji-fallback {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    z-index: 1;
+  }
+
+  /* Hide emoji when FontAwesome is loaded */
+  .skill-icon i:not(:empty) + .emoji-fallback {
+    display: none;
   }
 
   .skill-card:hover .skill-icon {
@@ -236,4 +262,14 @@ const getLevel = (progress: number) => {
   }
 </style>
 
-  
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.skill-icon').forEach(iconBox => {
+      const icon = iconBox.querySelector('i');
+      if (icon && getComputedStyle(icon).fontFamily.indexOf('Font Awesome') === -1) {
+        iconBox.classList.add('fa-fallback');
+      }
+    });
+  });
+</script>
+
