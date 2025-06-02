@@ -2,162 +2,237 @@
 // src/components/Contact.astro
 ---
 
-<section id="contact" class="contact">
-  <div class="contact-grid"> {/* Grid container for layout */}
-    <div class="contact-info">
-      <h2>Contatti</h2>
-      <p>
-        Se hai domande o vuoi metterti in contatto con me, puoi inviarmi una mail a:
-        <a href="mailto:deniscazzulo@icloud.com" class="gradient-text">deniscazzulo@icloud.com</a>
+<section id="contact" class="contact-section">
+  <div class="container">
+    <div class="section-header text-center">
+      <h2>Mettiamoci in Contatto</h2>
+      <p class="section-description">
+        Hai un progetto in mente? Discutiamo insieme di come posso aiutarti a realizzarlo
       </p>
     </div>
-    <div class="social-links">
-      <ul>
-        <li>
-          <a href="https://www.linkedin.com/in/denis-cazzulo-b56b551a9/" target="_blank" rel="noopener noreferrer">
+
+    <div class="contact-content">
+      <div class="contact-card glass glass-hover" data-aos="fade-up">
+        <div class="contact-icon">
+          <i class="fas fa-envelope"></i>
+        </div>
+        
+        <h3>Email</h3>
+        <p>Scrivimi per discutere del tuo progetto</p>
+        <a href="mailto:deniscazzulo@icloud.com" class="contact-link">
+          deniscazzulo@icloud.com
+        </a>
+      </div>
+
+      <div class="social-section" data-aos="fade-up" data-aos-delay="200">
+        <h3>Seguimi sui Social</h3>
+        <div class="social-links">
+          <a href="https://www.linkedin.com/in/denis-cazzulo-b56b551a9/" target="_blank" rel="noopener noreferrer" class="social-link">
             <i class="fab fa-linkedin-in"></i>
+            <span>LinkedIn</span>
           </a>
-        </li>
-        <li>
-          <a href="https://github.com/deniscazz" target="_blank" rel="noopener noreferrer">
+          <a href="https://github.com/deniscazz" target="_blank" rel="noopener noreferrer" class="social-link">
             <i class="fab fa-github"></i>
+            <span>GitHub</span>
           </a>
-        </li>
-      </ul>
+        </div>
+      </div>
     </div>
-  </div>
-  <div class="glow-container"> {/* Container for the glowing orbs */}
-    <div class="glow-orb"></div>
-    <div class="glow-orb"></div>
+
+    <div class="cta-section text-center" data-aos="fade-up" data-aos-delay="400">
+      <div class="cta-content glass">
+        <h3>Pronto a iniziare?</h3>
+        <p>Trasformiamo le tue idee in realtà digitale</p>
+        <a href="mailto:deniscazzulo@icloud.com" class="btn btn-primary btn-lg">
+          <i class="fas fa-rocket"></i>
+          Iniziamo il Progetto
+        </a>
+      </div>
+    </div>
   </div>
 </section>
 
 <style>
-  /* Variabili di Colore */
-:root {
-    --primary: #00ffea; /* Ciano neon */
-    --secondary: #ff00f7; /* Magenta neon */
-    --background: #0d0d0d; /* Sfondo ultra scuro */
-    --accent: #ffffff; /* Accenti in bianco */
-    --border-color: rgba(255, 255, 255, 0.1);
+  .contact-section {
+    background: var(--bg-primary);
+    position: relative;
+    overflow: hidden;
   }
 
-.contact {
-    padding: 6rem 2rem;
-    background-color: var(--background);
-    position: relative; /* For pseudo-element and orbs */
-    overflow: hidden; /* Hide orb overflow */
+  .section-header {
+    margin-bottom: var(--space-16);
   }
 
-.contact-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr; /* Two-column layout */
-    gap: 3rem;
-    align-items: center; /* Vertically center content */
-    z-index: 1; /* Ensure content is above background effects */
+  .section-description {
+    max-width: 600px;
+    margin: 0 auto;
+    font-size: 1.125rem;
+    color: var(--text-secondary);
   }
 
-.contact-info {
-    text-align: left; /* Align text to the left */
+  .contact-content {
+    max-width: 800px;
+    margin: 0 auto var(--space-16);
   }
 
-.contact h2 {
-    font-size: 2.5rem;
-    color: var(--accent);
-    margin-bottom: 1.5rem;
+  .contact-card {
+    padding: var(--space-12);
+    border-radius: var(--radius-xl);
+    text-align: center;
+    margin-bottom: var(--space-12);
   }
 
-.contact p {
-    font-size: 1.1rem;
-    line-height: 1.6;
-    color: var(--accent);
+  .contact-icon {
+    margin-bottom: var(--space-6);
   }
 
-.gradient-text { /* Gradient text for email */
-    background: linear-gradient(to right, var(--primary), var(--secondary));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    text-fill-color: transparent;
-  }
-
-.social-links ul {
-    list-style: none;
-    padding: 0;
-    display: flex;
-    justify-content: flex-end; /* Align icons to the right */
-    gap: 2rem;
-  }
-
-.social-links a {
-    font-size: 2rem;
-    color: var(--accent);
-    transition: color 0.3s ease, transform 0.3s ease;
-  }
-
-.social-links a:hover {
+  .contact-icon i {
+    font-size: 3rem;
     color: var(--primary);
-    transform: scale(1.2);
-  }
-
-  /* Glowing Orbs */
-.glow-container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 0; /* Place behind content */
-    pointer-events: none; /* Allow interaction with elements behind */
-  }
-
-.glow-orb {
-    position: absolute;
-    width: 200px;
-    height: 200px;
+    padding: var(--space-6);
+    background: var(--bg-tertiary);
     border-radius: 50%;
-    background-color: var(--primary);
-    filter: blur(100px); /* Adjust blur for desired effect */
-    animation: glow-orb-anim 8s linear infinite; /* Add animation */
+    border: 2px solid var(--border-primary);
   }
 
-.glow-orb:nth-child(1) {
-    top: 20%;
-    left: 10%;
-    background-color: var(--primary);
+  .contact-card h3 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: var(--space-3);
   }
 
-.glow-orb:nth-child(2) {
-    bottom: 10%;
-    right: 20%;
-    background-color: var(--secondary);
-    animation-delay: 4s; /* Offset animation for second orb */
+  .contact-card p {
+    color: var(--text-secondary);
+    margin-bottom: var(--space-6);
+    font-size: 1.125rem;
   }
 
-  @keyframes glow-orb-anim {
-    0% {
-      transform: translate(0, 0);
-      opacity: 0.6;
-    }
-    50% {
-      transform: translate(50px, -50px); /* Adjust movement for desired effect */
-      opacity: 0.3;
-    }
-    100% {
-      transform: translate(0, 0);
-      opacity: 0.6;
-    }
+  .contact-link {
+    display: inline-block;
+    color: var(--primary);
+    text-decoration: none;
+    font-size: 1.25rem;
+    font-weight: 600;
+    padding: var(--space-3) var(--space-6);
+    border: 2px solid var(--primary);
+    border-radius: var(--radius-lg);
+    transition: all var(--transition-normal);
+    background: transparent;
   }
 
-  /* Media Queries */
+  .contact-link:hover {
+    background: var(--primary);
+    color: var(--bg-primary);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(0, 217, 255, 0.3);
+  }
+
+  .social-section {
+    text-align: center;
+    margin-bottom: var(--space-12);
+  }
+
+  .social-section h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: var(--space-8);
+  }
+
+  .social-links {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-6);
+  }
+
+  .social-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-6);
+    border-radius: var(--radius-lg);
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-primary);
+    color: var(--text-primary);
+    text-decoration: none;
+    transition: all var(--transition-normal);
+    min-width: 120px;
+  }
+
+  .social-link:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 217, 255, 0.2);
+    border-color: var(--primary);
+  }
+
+  .social-link i {
+    font-size: 2rem;
+    color: var(--primary);
+  }
+
+  .social-link span {
+    font-size: 0.875rem;
+    font-weight: 500;
+  }
+
+  .cta-section {
+    margin-top: var(--space-16);
+  }
+
+  .cta-content {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: var(--space-12) var(--space-8);
+    border-radius: var(--radius-xl);
+  }
+
+  .cta-content h3 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: var(--space-4);
+  }
+
+  .cta-content p {
+    color: var(--text-secondary);
+    margin-bottom: var(--space-8);
+    font-size: 1.125rem;
+  }
+
+  .btn-lg {
+    font-size: 1.125rem;
+    padding: var(--space-4) var(--space-8);
+  }
+
+  /* Mobile Responsive */
   @media (max-width: 768px) {
-  .contact-grid {
-      grid-template-columns: 1fr; /* Single column on smaller screens */
-      text-align: center; /* Center content */
+    .contact-card {
+      padding: var(--space-8) var(--space-6);
     }
 
-  .social-links ul {
-      justify-content: center; /* Center icons */
+    .social-links {
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-4);
+    }
+
+    .social-link {
+      min-width: 200px;
+    }
+
+    .cta-content {
+      padding: var(--space-8) var(--space-6);
+    }
+
+    .cta-content h3 {
+      font-size: 1.75rem;
+    }
+
+    .btn-lg {
+      font-size: 1rem;
+      padding: var(--space-3) var(--space-6);
     }
   }
 </style>

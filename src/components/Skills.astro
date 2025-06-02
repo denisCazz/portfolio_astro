@@ -1,226 +1,232 @@
 ---
 // src/components/Skills.astro
 const skills = [
-  { icon: "fa-solid fa-microchip", title: "AI", progress: 90, description: "Large Language Models, Generative AI, Machine Learning" },
-  { icon: "fa-solid fa-code", title: "ColdFusion", progress: 99, description: "Legacy Web Development, Application Server Management" },
-  { icon: "fa-brands fa-python", title: "Python", progress: 80, description: "Scripting, Automation, Data Analysis" },
-  { icon: "fa-brands fa-js", title: "JS/TS", progress: 95, description: "Modern Web Development, Frameworks (React, Vue)" },
-  { icon: "fa-brands fa-node-js", title: "Node.js", progress: 90, description: "Backend Development, APIs, Serverless Functions" },
-  { icon: "fa-brands fa-jenkins", title: "Jenkins", progress: 80, description: "CI/CD Pipelines, Automation, DevOps" },
-  { icon: "fa-solid fa-database", title: "SQL", progress: 85, description: "Oracle, MSSQL, Database Design, Query Optimization" },
+  { 
+    icon: "fas fa-brain", 
+    title: "Intelligenza Artificiale", 
+    progress: 90, 
+    description: "Large Language Models, Machine Learning, Deep Learning",
+    color: "var(--primary)"
+  },
+  { 
+    icon: "fab fa-python", 
+    title: "Python", 
+    progress: 85, 
+    description: "Data Science, AI/ML, Backend Development, Automation",
+    color: "var(--accent)"
+  },
+  { 
+    icon: "fab fa-js-square", 
+    title: "JavaScript/TypeScript", 
+    progress: 95, 
+    description: "React, Vue, Node.js, Modern Web Development",
+    color: "var(--warning)"
+  },
+  { 
+    icon: "fas fa-cloud", 
+    title: "Cloud & DevOps", 
+    progress: 80, 
+    description: "AWS, Docker, Kubernetes, CI/CD, Infrastructure as Code",
+    color: "var(--secondary)"
+  },
+  { 
+    icon: "fas fa-database", 
+    title: "Database", 
+    progress: 85, 
+    description: "SQL, NoSQL, Oracle, PostgreSQL, MongoDB",
+    color: "var(--accent)"
+  },
+  { 
+    icon: "fas fa-mobile-alt", 
+    title: "Full Stack", 
+    progress: 90, 
+    description: "Frontend, Backend, API Design, Mobile Development",
+    color: "var(--primary)"
+  }
 ];
 
 const getLevel = (progress: number) => {
-  if (progress >= 90) return "Esperto";
-  else if (progress >= 75) return "Avanzato";
-  else if (progress >= 50) return "Intermedio";
-  else return "Base";
+  if (progress >= 90) return { text: "Esperto", color: "var(--accent)" };
+  else if (progress >= 75) return { text: "Avanzato", color: "var(--primary)" };
+  else if (progress >= 50) return { text: "Intermedio", color: "var(--warning)" };
+  else return { text: "Base", color: "var(--secondary)" };
 };
 ---
 
-<section id="skills" class="skills">
-  <h2>Le mie competenze</h2>
-  <div class="skills-grid">
-    {skills.map((skill) => (
-      <div class="skill-card" data-progress={skill.progress}>
-        <div class="skill-icon-wrapper">
-          <i class={skill.icon}></i>
-        </div>
-        <h3>{skill.title}</h3>
-        <p class="skill-description">{skill.description}</p>
-        <div class="progress-container">
-          <div class="progress-bar"></div>
-        </div>
-        <br>
-        <div class="skill-level">{getLevel(skill.progress)}</div>
-      </div>
-    ))}
+<section id="skills" class="skills-section">
+  <div class="container">
+    <div class="section-header text-center">
+      <h2>Skills & Competenze</h2>
+      <p class="section-description">
+        Le tecnologie e competenze che utilizzo per creare soluzioni innovative
+      </p>
+    </div>
+    
+    <div class="skills-grid">
+      {skills.map((skill, index) => {
+        const level = getLevel(skill.progress);
+        return (
+          <div class="skill-card glass glass-hover" data-aos="fade-up" data-aos-delay={index * 100}>
+            <div class="skill-header">
+              <div class="skill-icon" style={`color: ${skill.color}`}>
+                <i class={skill.icon}></i>
+              </div>
+              <div class="skill-info">
+                <h3 class="skill-name">{skill.title}</h3>
+                <span class="skill-level" style={`color: ${level.color}`}>
+                  {level.text}
+                </span>
+              </div>
+            </div>
+            
+            <p class="skill-description">{skill.description}</p>
+            
+            <div class="skill-progress">
+              <div class="progress-container">
+                <div class="progress-bar" style={`width: ${skill.progress}%; background: linear-gradient(90deg, ${skill.color}, ${skill.color}80)`}></div>
+              </div>
+              <span class="progress-text">{skill.progress}%</span>
+            </div>
+          </div>
+        );
+      })}
+    </div>
   </div>
 </section>
 
 <style>
-  /* Variabili di Colore */
-  :root {
-    --primary: #00ffea;       /* Ciano neon */
-    --secondary: #ff00f7;     /* Magenta neon */
-    --background: #0d0d0d;    /* Sfondo ultra scuro */
-    --accent: #ffffff;        /* Accenti in bianco */
-    --code-bg: #1a1a1a;       /* Sfondo terminal */
-    --border-color: rgba(255, 255, 255, 0.2);
+  .skills-section {
+    background: var(--bg-secondary);
   }
 
-  .skills {
-    position: relative; /* Necessario per il posizionamento assoluto dello pseudo-elemento */
-    padding: 4rem 2rem;
-    background-color: var(--background); /* Sfondo di base */
-    overflow: hidden;
+  .section-header {
+    margin-bottom: var(--space-16);
   }
 
-  /* Nuovo background aggiuntivo con effetto radiale */
-  .skills::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    /* Effetto radiale traslucido per dare profondità e texture */
-    background: radial-gradient(circle at center, rgba(0, 255, 234, 0.1), transparent 50%);
-    z-index: 0;
-  }
-
-  .skills h2 {
-    position: relative;
-    color: var(--accent);
-    text-align: center;
-    margin-bottom: 3rem;
-    z-index: 1; /* Per stare sopra lo pseudo-elemento */
+  .section-description {
+    max-width: 600px;
+    margin: 0 auto;
+    font-size: 1.125rem;
+    color: var(--text-secondary);
   }
 
   .skills-grid {
-    position: relative;
-    z-index: 1;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 3rem;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: var(--space-8);
   }
 
   .skill-card {
-    background: rgba(255, 255, 255, 0.08);
-    padding: 2.5rem;
-    border-radius: 12px;
-    text-align: center;
-    border: 1px solid var(--border-color);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    padding: var(--space-8);
+    border-radius: var(--radius-xl);
     position: relative;
     overflow: hidden;
   }
 
-  .skill-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 0 20px var(--primary);
+  .skill-header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    margin-bottom: var(--space-4);
   }
 
-  .skill-icon-wrapper {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.1);
+  .skill-icon {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0 auto 1.5rem;
-    transition: background-color 0.3s ease;
+    width: 60px;
+    height: 60px;
+    background: var(--bg-tertiary);
+    border-radius: var(--radius-lg);
+    font-size: 1.75rem;
+    border: 1px solid var(--border-primary);
   }
 
-  .skill-card:hover .skill-icon-wrapper {
-    background-color: rgba(255, 255, 255, 0.2);
+  .skill-info {
+    flex: 1;
   }
 
-  .skill-icon-wrapper i {
-    display: block;
-    margin: 0 auto;
-    font-size: 3rem;
-    color: var(--primary);
-    line-height: 1;
-    transition: color 0.3s ease;
+  .skill-name {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0 0 var(--space-1) 0;
   }
 
-  .skill-card:hover .skill-icon-wrapper i {
-    color: var(--secondary);
+  .skill-level {
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
   }
 
   .skill-description {
-    color: var(--accent);
-    font-size: 0.9rem;
-    margin-bottom: 1.5rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: var(--space-6);
+  }
+
+  .skill-progress {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
   }
 
   .progress-container {
-    height: 10px;
-    margin: 1rem 0;
-    background-color: rgba(255, 255, 255, 0.1);
-    border-radius: 5px;
+    flex: 1;
+    height: 8px;
+    background: var(--bg-tertiary);
+    border-radius: var(--radius-md);
     overflow: hidden;
     position: relative;
-  }
-
-  .progress-container::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(255, 255, 255, 0.3);
-    transition: transform 0.5s ease-in-out;
-    transform: translateX(-100%);
-  }
-
-  .skill-card:hover .progress-container::before {
-    transform: translateX(0);
   }
 
   .progress-bar {
     height: 100%;
-    background: linear-gradient(90deg, var(--primary), var(--secondary));
-    border-radius: 5px;
-    width: 0;
-    transition: width 0.8s ease-in-out;
+    border-radius: var(--radius-md);
+    transition: width 1s ease-out 0.5s;
+    position: relative;
   }
 
-  .skill-card:hover .progress-bar {
-    width: calc(var(--progress-width, 0%) + 10%);
-  }
-
-  .skill-percentage {
+  .progress-bar::after {
+    content: '';
     position: absolute;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: var(--accent);
-    font-weight: bold;
-    font-size: 0.9rem;
-    opacity: 0;
-    transition: opacity 0.3s ease;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    animation: shimmer 2s infinite;
   }
 
-  .skill-card:hover .skill-percentage {
-    opacity: 1;
+  .progress-text {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    min-width: 40px;
+    text-align: right;
   }
 
-.skill-card:hover .progress-container::before,
-.skill-card.active .progress-container::before {
-  transform: translateX(0);
-}
+  @media (max-width: 768px) {
+    .skills-grid {
+      grid-template-columns: 1fr;
+      gap: var(--space-6);
+    }
 
-.skill-card:hover .progress-bar,
-.skill-card.active .progress-bar {
-  width: calc(var(--progress-width, 0%) + 10%);
-}
+    .skill-card {
+      padding: var(--space-6);
+    }
 
-.skill-card:hover .skill-percentage,
-.skill-card.active .skill-percentage {
-  opacity: 1;
-}
+    .skill-icon {
+      width: 50px;
+      height: 50px;
+      font-size: 1.5rem;
+    }
 
-.skill-level {
-  color: var(--accent);
-  font-weight: bold;
-  font-size: 1rem;
-}
+    .skill-name {
+      font-size: 1.125rem;
+    }
+  }
 </style>
 
-<script>
-   // Cast della NodeList al tipo HTMLElement
-  const skillCards = document.querySelectorAll('.skill-card') as NodeListOf<HTMLElement>;
-
-  skillCards.forEach(card => {
-    const progress = card.dataset.progress;
-    card.style.setProperty('--progress-width', `${progress}%`);
-
-    // Aggiungi il listener per il click
-    card.addEventListener('click', () => {
-      card.classList.toggle('active');
-    });
-  });
-</script>
+  

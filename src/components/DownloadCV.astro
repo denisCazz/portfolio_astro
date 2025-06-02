@@ -5,42 +5,188 @@ const cvLinks = {
 };
 ---
 
-<section id="download-cv" class="download-cv">
-  <h2>📄 Scarica il mio CV</h2>
-  <div class="cv-buttons">
-    <a href={cvLinks.it} download class="cv-button">Italiano</a>
-    <a href={cvLinks.en} download class="cv-button">English (not avaible yet)</a>
+<section id="download-cv" class="download-cv-section">
+  <div class="container">
+    <div class="cv-content glass" data-aos="fade-up">
+      <div class="cv-icon">
+        <i class="fas fa-file-download"></i>
+      </div>
+      
+      <h2>Scarica il mio CV</h2>
+      <p class="cv-description">
+        Ottieni una versione completa del mio curriculum vitae con tutti i dettagli 
+        sulla mia esperienza professionale e competenze tecniche.
+      </p>
+      
+      <div class="cv-buttons">
+        <a href={cvLinks.it} download class="btn btn-primary cv-button">
+          <i class="fas fa-download"></i>
+          CV Italiano
+        </a>
+        <span class="btn btn-secondary cv-button disabled">
+          <i class="fas fa-download"></i>
+          CV English
+          <span class="coming-soon">(Prossimamente)</span>
+        </span>
+      </div>
+      
+      <div class="cv-stats">
+        <div class="stat-item">
+          <span class="stat-value">4+</span>
+          <span class="stat-label">Anni di Esperienza</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-value">15+</span>
+          <span class="stat-label">Progetti Completati</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-value">10+</span>
+          <span class="stat-label">Tecnologie Padrone</span>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
 <style>
-  .download-cv {
-    padding: 3rem 2rem;
+  .download-cv-section {
+    background: var(--bg-secondary);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cv-content {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: var(--space-16);
+    border-radius: var(--radius-2xl);
     text-align: center;
-    background: radial-gradient(circle, rgba(10,10,10,1) 0%, rgba(20,20,20,1) 100%);
   }
-  .download-cv h2 {
-    color: #00ffea;
-    text-shadow: 0 0 10px rgba(0, 255, 234, 0.6);
-    margin-bottom: 1.5rem;
+
+  .cv-icon {
+    margin-bottom: var(--space-8);
   }
+
+  .cv-icon i {
+    font-size: 4rem;
+    color: var(--primary);
+    padding: var(--space-6);
+    background: var(--bg-tertiary);
+    border-radius: 50%;
+    border: 2px solid var(--border-primary);
+  }
+
+  .cv-content h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: var(--space-4);
+  }
+
+  .cv-description {
+    color: var(--text-secondary);
+    font-size: 1.125rem;
+    line-height: 1.6;
+    margin-bottom: var(--space-10);
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
   .cv-buttons {
     display: flex;
     justify-content: center;
-    gap: 1rem;
+    gap: var(--space-4);
+    margin-bottom: var(--space-12);
+    flex-wrap: wrap;
   }
+
   .cv-button {
-    background: #1a1a1a;
-    color: white;
-    padding: 0.8rem 1.5rem;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: bold;
-    transition: background 0.3s, box-shadow 0.3s;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-4) var(--space-6);
+    font-size: 1.125rem;
+    position: relative;
   }
-  .cv-button:hover {
-    background: rgba(0, 255, 234, 0.2);
-    box-shadow: 0 0 15px rgba(0, 255, 234, 0.6);
+
+  .cv-button.disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  .coming-soon {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background: var(--warning);
+    color: var(--bg-primary);
+    font-size: 0.625rem;
+    padding: var(--space-1) var(--space-2);
+    border-radius: var(--radius-sm);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .cv-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-6);
+    padding-top: var(--space-8);
+    border-top: 1px solid var(--border-secondary);
+  }
+
+  .stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-2);
+  }
+
+  .stat-value {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--primary);
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    text-align: center;
+    font-weight: 500;
+  }
+
+  /* Mobile Responsive */
+  @media (max-width: 768px) {
+    .cv-content {
+      padding: var(--space-12) var(--space-6);
+    }
+
+    .cv-content h2 {
+      font-size: 2rem;
+    }
+
+    .cv-buttons {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .cv-button {
+      width: 100%;
+      max-width: 280px;
+      justify-content: center;
+    }
+
+    .cv-stats {
+      grid-template-columns: 1fr;
+      gap: var(--space-4);
+    }
+
+    .stat-value {
+      font-size: 1.75rem;
+    }
   }
 </style>

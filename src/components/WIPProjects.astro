@@ -1,147 +1,320 @@
 ---
-//componente di astro dedicato ai progetti in corso. 
-
+// Componente per progetti in sviluppo
 const wipProjects = [
   {
     title: "Tesseract",
-    description: "Progetto in cantiere per una azienda che si occupa di servizi di AI. In sviluppo con Astro e Tailwind CSS. Premi qui per saperne di più.",
-    image: "tesseract.webp", // assicurati che il file esista in /public
+    description: "Progetto innovativo per servizi AI enterprise. Piattaforma moderna sviluppata con Astro e design system avanzato per ottimizzare l'integrazione di intelligenza artificiale.",
+    image: "tesseract.webp",
     link: "https://deniscazz.github.io/tesseract/",
-    tags: ["LLM", "Services", "AI"]
+    tags: ["AI", "LLM Services", "Enterprise", "Astro"],
+    status: "In Sviluppo",
+    progress: 75
   },
   {
-    title: "Altro in arrivo...",
-    description: "Something cool is coming soon!",
+    title: "Prossimo Progetto",
+    description: "Nuove innovazioni in arrivo! Sto lavorando su qualcosa di straordinario che sarà svelato presto. Resta sintonizzato per aggiornamenti.",
     image: "wip.jpg",
     link: "#",
-    tags: ["Coming soon"]
+    tags: ["Coming Soon", "Innovation"],
+    status: "Pianificazione",
+    progress: 25
   },
 ];
-
 ---
-<section id="wip-projects" class="wip-projects">
-  <h2><span class="icon">🚧</span> Progetti in Cantiere</h2>
-  <div class="wip-projects-grid">
-    {wipProjects.map((project) => (
-      <a href={project.link} target="_blank" class="project-card">
-        <div class="project-image">
-          <img src={project.image} alt={project.title} loading="lazy" />
-          <div class="image-overlay"></div>
-        </div>
-        <div class="project-info">
-          <h3>{project.title}</h3>
-          <p>{project.description}</p>
-        </div>
-        {project.tags.length > 0 && (
-        <div class="tags">
-          {project.tags.map((tag) => (
-            <span class="tech-tag">{tag}</span>
-          ))}
-        </div>
-        )}
-      </a>
-    ))}
+
+<section id="wip-projects" class="wip-section">
+  <div class="container">
+    <div class="section-header text-center">
+      <h2>Progetti in Sviluppo</h2>
+      <p class="section-description">
+        Ecco una panoramica dei progetti innovativi su cui sto attualmente lavorando
+      </p>
+    </div>
+
+    <div class="wip-grid">
+      {wipProjects.map((project, index) => (
+        <article class="wip-card glass glass-hover" data-aos="fade-up" data-aos-delay={index * 200}>
+          <div class="wip-image-container">
+            <img 
+              src={project.image} 
+              alt={project.title} 
+              class="wip-image"
+              loading="lazy" 
+            />
+            <div class="status-badge" data-status={project.status.toLowerCase()}>
+              <i class="fas fa-cog fa-spin"></i>
+              {project.status}
+            </div>
+            <div class="wip-overlay">
+              <a 
+                href={project.link} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                class="btn btn-primary btn-sm"
+                aria-label={`Esplora ${project.title}`}
+              >
+                <i class="fas fa-eye"></i>
+                Anteprima
+              </a>
+            </div>
+          </div>
+          
+          <div class="wip-content">
+            <div class="wip-header">
+              <h3 class="wip-title">{project.title}</h3>
+              <div class="progress-indicator">
+                <div class="progress-bar">
+                  <div class="progress-fill" style={`width: ${project.progress}%`}></div>
+                </div>
+                <span class="progress-text">{project.progress}%</span>
+              </div>
+            </div>
+            
+            <p class="wip-description">{project.description}</p>
+            
+            <div class="wip-tags">
+              {project.tags.map((tag) => (
+                <span class="tag tag-wip">{tag}</span>
+              ))}
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <div class="wip-cta text-center" data-aos="fade-up" data-aos-delay="400">
+      <div class="cta-content glass">
+        <h3>Hai un'idea per un progetto?</h3>
+        <p>Collaboriamo per dare vita alle tue idee innovative</p>
+        <a href="#contact" class="btn btn-primary">
+          <i class="fas fa-lightbulb"></i>
+          Discutiamo insieme
+        </a>
+      </div>
+    </div>
   </div>
 </section>
 
 <style>
-  /* Nuovo stile per una grafica moderna */
-  .wip-projects {
-    padding: 4rem 2rem;
-    background-color: var(--background);
+  .wip-section {
+    background: var(--bg-secondary);
+    position: relative;
   }
-  .wip-projects h2 {
-    text-align: center;
-    font-size: 2rem;
-    color: var(--accent);
-    margin-bottom: 2rem;
+
+  .section-header {
+    margin-bottom: var(--space-16);
   }
-  .wip-projects-grid {
+
+  .section-description {
+    max-width: 600px;
+    margin: 0 auto;
+    font-size: 1.125rem;
+    color: var(--text-secondary);
+  }
+
+  .wip-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: var(--space-10);
+    margin-bottom: var(--space-16);
   }
-  .project-card {
-    background: #1a1a1a;
-    border: 1px solid transparent;
-    border-image: linear-gradient(45deg, var(--primary), var(--secondary)) 1;
-    border-radius: 12px;
+
+  .wip-card {
+    border-radius: var(--radius-2xl);
     overflow: hidden;
-    text-decoration: none;
-    transition: transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+    transition: all var(--transition-normal);
   }
-  .project-card:hover {
-    transform: scale(1.02);
-    box-shadow: 0 8px 16px rgba(0,0,0,0.6);
-    border-image: linear-gradient(45deg, var(--secondary), var(--primary)) 1;
-  }
-  .project-image {
+
+  .wip-image-container {
     position: relative;
     overflow: hidden;
+    height: 280px;
   }
-  .project-card img {
+
+  .wip-image {
     width: 100%;
-    height: 220px;
+    height: 100%;
     object-fit: cover;
-    transition: transform 0.4s ease;
-    image-rendering: auto;  /* Garantisce una resa migliore se l'immagine è ad alta risoluzione */
+    transition: transform var(--transition-slow);
   }
-  .project-card:hover img {
-    transform: scale(1.08);
+
+  .wip-card:hover .wip-image {
+    transform: scale(1.05);
   }
-  .image-overlay {
+
+  .status-badge {
+    position: absolute;
+    top: var(--space-4);
+    left: var(--space-4);
+    padding: var(--space-2) var(--space-4);
+    border-radius: var(--radius-lg);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    backdrop-filter: blur(16px);
+  }
+
+  .status-badge[data-status="in sviluppo"] {
+    background: rgba(16, 185, 129, 0.9);
+    color: white;
+  }
+
+  .status-badge[data-status="pianificazione"] {
+    background: rgba(124, 58, 237, 0.9);
+    color: white;
+  }
+
+  .wip-overlay {
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.3);
-    opacity: 0;
-    transition: opacity 0.3s ease;
-  }
-  .project-card:hover .image-overlay {
-    opacity: 1;
-  }
-  .project-info {
-    padding: 1.5rem;
-    font-family: 'Roboto Mono', monospace;
-    color: var(--accent);
-    background: linear-gradient(180deg, transparent, rgba(0,0,0,0.6));
-  }
-  .project-info h3 {
-    font-size: 1.4rem;
-    margin-bottom: 0.5rem;
-  }
-  .project-info p {
-    font-size: 1rem;
-    color: #ccc;
-  }
-  .tags {
-    padding: 1rem 1.5rem;
+    right: 0;
+    bottom: 0;
+    background: rgba(3, 7, 18, 0.8);
+    backdrop-filter: blur(4px);
     display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    background: #111;
-  }
-  .tech-tag {
-    background: var(--code-bg);
-    color: var(--primary);
-    padding: 0.4rem 0.8rem;
-    border-radius: 20px;
-    font-size: 0.85rem;
-    transition: background 0.3s ease, color 0.3s ease;
-    border: 1px solid var(--border-color);
-  }
-  .tech-tag:hover {
-    background: var(--secondary);
-    color: #111;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity var(--transition-normal);
   }
 
-  /* Responsive adjustments */
-  @media (max-width: 480px) {
-    .wip-projects-grid {
+  .wip-card:hover .wip-overlay {
+    opacity: 1;
+  }
+
+  .btn-sm {
+    padding: var(--space-2) var(--space-4);
+    font-size: 0.875rem;
+  }
+
+  .wip-content {
+    padding: var(--space-8);
+  }
+
+  .wip-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: var(--space-4);
+    gap: var(--space-4);
+  }
+
+  .wip-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0;
+    flex: 1;
+  }
+
+  .progress-indicator {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: var(--space-1);
+    min-width: 80px;
+  }
+
+  .progress-bar {
+    width: 80px;
+    height: 6px;
+    background: var(--bg-tertiary);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+  }
+
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary), var(--accent));
+    border-radius: var(--radius-sm);
+    transition: width var(--transition-slow);
+  }
+
+  .progress-text {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    font-weight: 600;
+  }
+
+  .wip-description {
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: var(--space-6);
+  }
+
+  .wip-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+  }
+
+  .tag-wip {
+    background: var(--surface-glass);
+    border: 1px solid var(--border-primary);
+    backdrop-filter: blur(16px);
+  }
+
+  .wip-cta {
+    margin-top: var(--space-16);
+  }
+
+  .cta-content {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: var(--space-12) var(--space-8);
+    border-radius: var(--radius-xl);
+  }
+
+  .cta-content h3 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: var(--space-4);
+  }
+
+  .cta-content p {
+    color: var(--text-secondary);
+    margin-bottom: var(--space-8);
+    font-size: 1.125rem;
+  }
+
+  /* Mobile Responsive */
+  @media (max-width: 768px) {
+    .wip-grid {
       grid-template-columns: 1fr;
+      gap: var(--space-8);
+    }
+
+    .wip-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--space-3);
+    }
+
+    .progress-indicator {
+      align-items: flex-start;
+      width: 100%;
+    }
+
+    .progress-bar {
+      width: 100%;
+    }
+
+    .wip-content {
+      padding: var(--space-6);
+    }
+
+    .cta-content {
+      padding: var(--space-8) var(--space-6);
+    }
+
+    .cta-content h3 {
+      font-size: 1.5rem;
     }
   }
 </style>

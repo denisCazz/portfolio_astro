@@ -1,292 +1,530 @@
 ---
 // src/components/WorkExperience.astro
-const jobs = [
-  // Esperienza per Tesisquare
+const experiences = [
   {
+    id: "tesisquare",
     title: "Supply Chain IT Developer",
     company: "Tesisquare",
-    years: "2021 - Presente",
-    description: "Sviluppatore software specializzato in soluzioni per la gestione della supply chain, con particolare attenzione alla logistica e al trasporto merci.",
+    location: "Italia",
+    period: "2021 - Presente",
+    type: "Full-time",
+    description: "Sviluppatore software specializzato in soluzioni per la gestione della supply chain, con particolare attenzione alla logistica e al trasporto merci. Responsabile dello sviluppo di applicazioni enterprise per l'ottimizzazione dei processi logistici.",
+    responsibilities: [
+      "Sviluppo di applicazioni web per la gestione della supply chain",
+      "Integrazione di sistemi ERP e WMS",
+      "Ottimizzazione dei processi logistici attraverso soluzioni IT",
+      "Collaborazione con team internazionali"
+    ],
+    technologies: ["JavaScript", "Python", "SQL", "Oracle", "Cloud Services"],
+    icon: "fas fa-truck",
+    color: "var(--secondary)"
   },
-  // Esperienza per Progetti Personali (aggiornata)
   {
+    id: "freelance",
     title: "Freelance Web Developer",
     company: "Progetti Personali",
-    years: "Dal 2019, come hobby",
-    description: "Realizzazione di siti web a tempo libero, sperimentando design intuitivi e al passo con i tempi, utilizzando le migliori tecnologie sul mercato.",
+    location: "Remote",
+    period: "2019 - Presente",
+    type: "Part-time",
+    description: "Realizzazione di siti web personalizzati per piccole e medie imprese, con focus su design moderno, performance e user experience. Specializzato in soluzioni full-stack innovative.",
+    responsibilities: [
+      "Progettazione e sviluppo di siti web responsive",
+      "Consulenza tecnica e strategica per clienti",
+      "Implementazione di soluzioni e-commerce",
+      "Ottimizzazione SEO e performance"
+    ],
+    technologies: ["React", "Vue.js", "Node.js", "Astro", "TypeScript"],
+    icon: "fas fa-laptop-code",
+    color: "var(--accent)"
+  }
+];
+
+const clientProjects = [
+  {
+    name: "LangAmore Pollenzo",
+    description: "Sito web elegante per attività gastronomica locale con focus su tradizione e qualità",
+    url: "https://www.langamorepollenzo.it/",
+    image: "🍷",
+    technologies: ["WordPress", "PHP", "Custom CSS"]
   },
+  {
+    name: "Sartoria Kristina",
+    description: "Portale moderno per sartoria con design personalizzato e gallery interattiva",
+    url: "https://sartoriakristina.it/",
+    image: "✂️",
+    technologies: ["HTML5", "CSS3", "JavaScript"]
+  }
 ];
 ---
 
-<section id="work" class="work">
-  <h2><span class="icon">💼</span> Esperienze Lavorative</h2>
-  <div class="work-grid">
-    {jobs.map((job) => (
-      <div class={`work-card ${job.company === "Tesisquare" ? "supply-chain" : (job.company === "Progetti Personali" ? "personal-projects" : "")}`}>
-        <div class="work-header">
-          <h3>{job.title}</h3>
-          <span class="company">{job.company}</span>
-          <span class="years">{job.years}</span>
+<section id="experience" class="experience-section">
+  <div class="container">
+    <div class="section-header text-center">
+      <h2>Esperienza Lavorativa</h2>
+      <p class="section-description">
+        Il mio percorso professionale nel mondo dello sviluppo software e delle tecnologie innovative
+      </p>
+    </div>
+
+    <div class="timeline">
+      {experiences.map((exp, index) => (
+        <div class="timeline-item" data-aos="fade-up" data-aos-delay={index * 200}>
+          <div class="timeline-marker">
+            <div class="timeline-icon" style={`background: ${exp.color}`}>
+              <i class={exp.icon}></i>
+            </div>
+          </div>
+          
+          <div class="timeline-content glass glass-hover">
+            <div class="experience-header">
+              <div class="experience-title">
+                <h3>{exp.title}</h3>
+                <div class="company-info">
+                  <span class="company">{exp.company}</span>
+                  <span class="location">
+                    <i class="fas fa-map-marker-alt"></i>
+                    {exp.location}
+                  </span>
+                </div>
+              </div>
+              <div class="experience-meta">
+                <span class="period">{exp.period}</span>
+                <span class="type" style={`color: ${exp.color}`}>{exp.type}</span>
+              </div>
+            </div>
+            
+            <p class="experience-description">{exp.description}</p>
+            
+            <div class="responsibilities">
+              <h4>Responsabilità principali:</h4>
+              <ul>
+                {exp.responsibilities.map((resp) => (
+                  <li>{resp}</li>
+                ))}
+              </ul>
+            </div>
+            
+            <div class="technologies">
+              <h4>Tecnologie utilizzate:</h4>
+              <div class="tech-tags">
+                {exp.technologies.map((tech) => (
+                  <span class="tech-tag">{tech}</span>
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
-        <p class="description">{job.description}</p>
-      </div>
-    ))}
+      ))}
+    </div>
   </div>
 </section>
 
-<section id="clients" class="clients">
-  <h2><span class="icon">🌐</span> Creazione di Siti Web</h2>
-  <p class="intro">
-    Vuoi portare la tua idea online? Creiamo insieme il tuo sito web personalizzato, ottimizzato per ogni esigenza. Dai un’occhiata ai progetti che ho realizzato e contattami per discutere del tuo!
-  </p>
-  <div class="client-projects">
-    <div class="project-card">
-      <h3>LangAmore Pollenzo</h3>
-      <p>Un sito web elegante e funzionale per un'attività legata alla gastronomia locale.</p>
-      <a href="https://www.langamorepollenzo.it/" target="_blank">Visita il sito</a>
+<section class="client-work-section">
+  <div class="container">
+    <div class="section-header text-center">
+      <h2>Progetti Cliente</h2>
+      <p class="section-description">
+        Siti web personalizzati realizzati per clienti, con focus su design moderno e funzionalità ottimizzate
+      </p>
     </div>
-    <div class="project-card">
-      <h3>Sartoria Kristina</h3>
-      <p>Un portale moderno per una sartoria, con un design accattivante e personalizzato.</p>
-      <a href="https://sartoriakristina.it/" target="_blank">Visita il sito</a>
+
+    <div class="projects-grid">
+      {clientProjects.map((project, index) => (
+        <div class="project-card glass glass-hover" data-aos="fade-up" data-aos-delay={index * 200}>
+          <div class="project-icon">
+            <div class="project-emoji">{project.image}</div>
+          </div>
+          
+          <h3 class="project-name">{project.name}</h3>
+          <p class="project-description">{project.description}</p>
+          
+          <div class="project-tech">
+            {project.technologies.map((tech) => (
+              <span class="tech-badge">{tech}</span>
+            ))}
+          </div>
+          
+          <a href={project.url} target="_blank" rel="noopener noreferrer" class="btn btn-secondary project-link">
+            <i class="fas fa-external-link-alt"></i>
+            Visita il sito
+          </a>
+        </div>
+      ))}
     </div>
-  </div>
-  <div class="cta">
-    <h3>Interessato a lavorare insieme?</h3>
-    <a href="#contact" class="btn-primary">Contattami</a>
+
+    <div class="cta-section text-center">
+      <div class="cta-content glass">
+        <h3>Interessato a lavorare insieme?</h3>
+        <p>Creiamo insieme il tuo sito web personalizzato, ottimizzato per ogni esigenza</p>
+        <a href="#contact" class="btn btn-primary">
+          <i class="fas fa-envelope"></i>
+          Contattami
+        </a>
+      </div>
+    </div>
   </div>
 </section>
 
 <style>
-  /* ... variabili di colore (se non definite globalmente) ... */
-  :root {
-    --primary: #00ffea; 
-    --secondary: #ff00f7; 
-    --background: #0d0d0d; 
-    --accent: #ffffff; 
-    --border-color: rgba(255, 255, 255, 0.1);
-  }
-
-  .work {
-    padding: 4rem 2rem;
-    background-color: var(--background);
-  }
-
-  .work h2 {
-    text-align: center;
-    font-size: 2.5rem;
-    color: var(--accent);
-    margin-bottom: 3rem;
-  }
-
-  .work-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 2rem;
-  }
-
-  /* Aggiunta di media query per rendere responsive la griglia */
-  @media (max-width: 768px) {
-    .work-grid {
-      grid-template-columns: 1fr;
-    }
-    .work-header {
-      flex-direction: column;
-      align-items: flex-start;
-    }
-    .work-header span {
-      margin-top: 0.5rem;
-    }
-  }
-
-  .work-card {
-    background-color: rgba(255, 255, 255, 0.05);
-    border: 1px solid var(--border-color);
-    padding: 2rem;
-    border-radius: 10px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .work-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 0 15px rgba(0, 255, 234, 0.3);
-  }
-
-  /* Aggiornato: effetto per Tesisquare con animazione camion (da destra a sinistra) */
-  .supply-chain {
-    border: 2px solid transparent;
-    border-image: linear-gradient(45deg, #ff6ec4, #7873f5) 1;
-    animation: chainPulse 2s infinite;
+  .experience-section {
+    background: var(--bg-primary);
     position: relative;
   }
 
-  @keyframes chainPulse {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.03); }
+  .client-work-section {
+    background: var(--bg-secondary);
   }
 
-  .supply-chain::after {
-    content: "🚚";
+  .section-header {
+    margin-bottom: var(--space-16);
+  }
+
+  .section-description {
+    max-width: 600px;
+    margin: 0 auto;
+    font-size: 1.125rem;
+    color: var(--text-secondary);
+  }
+
+  /* Timeline Styles */
+  .timeline {
+    position: relative;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .timeline::before {
+    content: '';
     position: absolute;
-    bottom: 10px;
-    left: 100%;  /* Inizia dal bordo destro */
-    font-size: 2rem;
-    animation: truckMoveRev 6s linear infinite;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(180deg, var(--primary), var(--secondary), var(--accent));
+    transform: translateX(-50%);
   }
 
-  @keyframes truckMoveRev {
-    0%   { left: 100%; }
-    100% { left: -50px; }  /* Termina fuori dal bordo sinistro */
-  }
-
-  /* Nuovo effetto per Progetti Personali */
-  .personal-projects {
+  .timeline-item {
     position: relative;
-    border: 2px solid transparent;
-    border-image: linear-gradient(45deg, #fa709a, #fee140) 1;
-    animation: personalPulse 2s infinite;
-  }
-  @keyframes personalPulse {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.05); }
+    margin-bottom: var(--space-12);
   }
 
-  /* Reimpostazione posizione e animazione per l'icona PC */
-  .personal-projects::after {
-    content: "💻";
+  .timeline-item:nth-child(odd) .timeline-content {
+    margin-right: 60%;
+    text-align: right;
+  }
+
+  .timeline-item:nth-child(even) .timeline-content {
+    margin-left: 60%;
+    text-align: left;
+  }
+
+  .timeline-marker {
     position: absolute;
-    bottom: 10px;
-    right: 10px;
-    font-size: 2rem;
-    animation: computerPulse 4s ease-in-out infinite;
-  }
-  @keyframes computerPulse {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.1); }
-  }
-
-  .work-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1rem;
-    position: relative;
+    left: 50%;
+    top: 2rem;
+    transform: translateX(-50%);
     z-index: 2;
   }
 
-  .work-header h3 {
-    font-size: 1.3rem;
-    color: var(--accent);
-    margin: 0;
-  }
-
-  .company {
-    font-size: 1rem;
-    color: var(--primary);
-  }
-
-  .years {
-    font-size: 0.9rem;
-    color: rgba(255, 255, 255, 0.7);
-  }
-
-  .description {
-    color: rgba(255, 255, 255, 0.8);
-    line-height: 1.5;
-  }
-
- .clients {
-    padding: 4rem 2rem;
-    background-color: var(--background);
-    border-top: 2px solid var(--border-color);
-  }
-
-  .clients h2 {
-    text-align: center;
-    font-size: 2.5rem;
-    color: var(--accent);
-    margin-bottom: 1rem;
-  }
-
-  .clients .intro {
-    text-align: center;
-    font-size: 1.2rem;
-    color: rgba(255, 255, 255, 0.8);
-    margin-bottom: 3rem;
-  }
-
-  .client-projects {
+  .timeline-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
     display: flex;
+    align-items: center;
     justify-content: center;
-    gap: 2rem;
-    margin-bottom: 3rem;
+    color: white;
+    font-size: 1.5rem;
+    box-shadow: 0 0 20px rgba(0, 217, 255, 0.3);
+    border: 3px solid var(--bg-primary);
+  }
+
+  .timeline-content {
+    padding: var(--space-8);
+    border-radius: var(--radius-xl);
+    position: relative;
+  }
+
+  .timeline-item:nth-child(odd) .timeline-content::after {
+    content: '';
+    position: absolute;
+    right: -15px;
+    top: 2rem;
+    width: 0;
+    height: 0;
+    border: 15px solid transparent;
+    border-left-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .timeline-item:nth-child(even) .timeline-content::after {
+    content: '';
+    position: absolute;
+    left: -15px;
+    top: 2rem;
+    width: 0;
+    height: 0;
+    border: 15px solid transparent;
+    border-right-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .experience-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: var(--space-4);
+    flex-wrap: wrap;
+    gap: var(--space-2);
+  }
+
+  .experience-title h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0 0 var(--space-2) 0;
+  }
+
+  .company-info {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
     flex-wrap: wrap;
   }
 
-  .project-card {
-    background-color: rgba(255, 255, 255, 0.05);
-    border: 1px solid var(--border-color);
-    padding: 2rem;
-    border-radius: 10px;
-    text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    max-width: 300px;
-  }
-
-  .project-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 0 15px rgba(0, 255, 234, 0.3);
-  }
-
-  .project-card h3 {
-    font-size: 1.5rem;
-    color: var(--accent);
-    margin-bottom: 1rem;
-  }
-
-  .project-card p {
-    font-size: 1rem;
-    color: rgba(255, 255, 255, 0.7);
-    margin-bottom: 1rem;
-  }
-
-  .project-card a {
-    font-size: 1rem;
+  .company {
+    font-size: 1.125rem;
+    font-weight: 600;
     color: var(--primary);
-    text-decoration: none;
-    border-bottom: 1px solid var(--primary);
-    transition: color 0.3s ease;
   }
 
-  .project-card a:hover {
-    color: var(--secondary);
+  .location {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
   }
 
-  .cta {
-    text-align: center;
-    margin-top: 2rem;
+  .experience-meta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: var(--space-1);
   }
 
-  .cta h3 {
-    font-size: 1.5rem;
-    color: var(--accent);
-    margin-bottom: 1rem;
+  .period {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-primary);
   }
 
-  .btn-primary {
-    padding: 0.8rem 1.5rem;
-    background: var(--primary);
-    color: var(--background);
+  .type {
+    font-size: 0.875rem;
+    font-weight: 500;
     text-transform: uppercase;
-    text-decoration: none;
-    border-radius: 5px;
-    transition: background 0.3s ease;
+    letter-spacing: 0.05em;
   }
 
-  .btn-primary:hover {
-    background: var(--secondary);
+  .experience-description {
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: var(--space-6);
   }
 
+  .responsibilities,
+  .technologies {
+    margin-bottom: var(--space-6);
+  }
+
+  .responsibilities h4,
+  .technologies h4 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: var(--space-3);
+  }
+
+  .responsibilities ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .responsibilities li {
+    position: relative;
+    padding-left: var(--space-6);
+    margin-bottom: var(--space-2);
+    color: var(--text-secondary);
+    line-height: 1.5;
+  }
+
+  .responsibilities li::before {
+    content: '▶';
+    position: absolute;
+    left: 0;
+    color: var(--primary);
+    font-size: 0.75rem;
+  }
+
+  .tech-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+  }
+
+  .tech-tag {
+    padding: var(--space-2) var(--space-3);
+    background: var(--bg-tertiary);
+    color: var(--text-primary);
+    border-radius: var(--radius-md);
+    font-size: 0.875rem;
+    font-weight: 500;
+    border: 1px solid var(--border-primary);
+  }
+
+  /* Client Projects */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: var(--space-8);
+    margin-bottom: var(--space-12);
+  }
+
+  .project-card {
+    padding: var(--space-8);
+    border-radius: var(--radius-xl);
+    text-align: center;
+  }
+
+  .project-icon {
+    margin-bottom: var(--space-6);
+  }
+
+  .project-emoji {
+    font-size: 4rem;
+    display: inline-block;
+    padding: var(--space-4);
+    background: var(--bg-tertiary);
+    border-radius: 50%;
+    border: 2px solid var(--border-primary);
+  }
+
+  .project-name {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: var(--space-3);
+  }
+
+  .project-description {
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: var(--space-6);
+  }
+
+  .project-tech {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-2);
+    margin-bottom: var(--space-6);
+  }
+
+  .tech-badge {
+    padding: var(--space-1) var(--space-3);
+    background: var(--bg-tertiary);
+    color: var(--text-secondary);
+    border-radius: var(--radius-sm);
+    font-size: 0.75rem;
+    font-weight: 500;
+    border: 1px solid var(--border-secondary);
+  }
+
+  .project-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+  }
+
+  /* CTA Section */
+  .cta-section {
+    margin-top: var(--space-16);
+  }
+
+  .cta-content {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: var(--space-12) var(--space-8);
+    border-radius: var(--radius-xl);
+  }
+
+  .cta-content h3 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: var(--space-4);
+  }
+
+  .cta-content p {
+    color: var(--text-secondary);
+    margin-bottom: var(--space-8);
+    font-size: 1.125rem;
+  }
+
+  /* Mobile Responsive */
+  @media (max-width: 768px) {
+    .timeline::before {
+      left: 30px;
+    }
+
+    .timeline-item:nth-child(odd) .timeline-content,
+    .timeline-item:nth-child(even) .timeline-content {
+      margin-left: 80px;
+      margin-right: 0;
+      text-align: left;
+    }
+
+    .timeline-marker {
+      left: 30px;
+    }
+
+    .timeline-icon {
+      width: 50px;
+      height: 50px;
+      font-size: 1.25rem;
+    }
+
+    .timeline-item:nth-child(odd) .timeline-content::after,
+    .timeline-item:nth-child(even) .timeline-content::after {
+      left: -15px;
+      border-right-color: rgba(255, 255, 255, 0.1);
+      border-left-color: transparent;
+    }
+
+    .experience-header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .experience-meta {
+      align-items: flex-start;
+    }
+
+    .projects-grid {
+      grid-template-columns: 1fr;
+      gap: var(--space-6);
+    }
+
+    .project-card {
+      padding: var(--space-6);
+    }
+
+    .cta-content {
+      padding: var(--space-8) var(--space-6);
+    }
+
+    .cta-content h3 {
+      font-size: 1.5rem;
+    }
+  }
 </style>
