@@ -1,0 +1,27 @@
+---
+// src/pages/it/index.astro
+import MainLayout from '../../layouts/MainLayout.astro';
+import Header from '../../components/Header.astro';
+import Hero from '../../components/Hero.astro';
+import About from '../../components/About.astro';
+import Skills from '../../components/Skills.astro';
+import Projects from '../../components/Projects.astro';
+import Contact from '../../components/Contact.astro';
+import Footer from '../../components/Footer.astro';
+import DownloadCV from '../../components/DownloadCV.astro';
+import WorkExperience from '../../components/WorkExperience.astro';
+import WIPProjects from '../../components/WIPProjects.astro';
+---
+
+<MainLayout>
+  <Header slot="header" />
+  <Hero />
+  <About />
+  <Skills />
+  <WIPProjects />
+  <Projects />
+  <WorkExperience />
+  <Contact />
+  <DownloadCV />
+  <Footer slot="footer" />
+</MainLayout>

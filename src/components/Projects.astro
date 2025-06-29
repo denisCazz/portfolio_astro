@@ -1,25 +1,57 @@
 ---
+import { getLangFromUrl, useTranslations } from '../i18n/languages';
+import { getImagePath } from '../utils/paths';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
 const projects = [
   {
-    title: "LangAmore Pollenzo",
-    description: "Guest House elegante in Piemonte con sito web moderno e user-friendly. Design responsivo ottimizzato per conversioni e esperienza utente eccellente.",
-    image: "langamore.jpg",
-    tags: ["Astro", "Tailwind CSS", "SEO", "Responsive"],
-    link: "https://www.langamorepollenzo.it/",
+    id: 'bitora',
+    title: t('project1.title'),
+    image: getImagePath('wip.jpg'),
+    challenge: t('project1.challenge_desc'),
+    solution: t('project1.solution_desc'),
+    impact: t('project1.impact_desc'),
+    techStack: t('project1.tech_list'),
+    link: 'https://bitora.it/',
     github: null,
     featured: true
   },
   {
-    title: "Sartoria Kristina",
-    description: "Sito vetrina elegante per sartoria artigianale. Focus su storytelling, portfolio visivo e ottimizzazione per motori di ricerca locali.",
-    image: "sartoria.png",
-    tags: ["Astro", "Tailwind CSS", "Local SEO", "Portfolio"],
-    link: "https://sartoriakristina.it/",
+    id: 'enterprise-ai',
+    title: t('project2.title'),
+    image: getImagePath('tesseract.webp'),
+    challenge: t('project2.challenge_desc'),
+    solution: t('project2.solution_desc'),
+    impact: t('project2.impact_desc'),
+    techStack: t('project2.tech_list'),
+    link: null,
     github: null,
     featured: true
   }
 ];
 
+const additionalProjects = [
+  {
+    title: "LangAmore Pollenzo",
+    description: lang === 'en' ? "Elegant Guest House in Piedmont with modern, user-friendly website. Responsive design optimized for conversions and excellent user experience." : "Guest House elegante in Piemonte con sito web moderno e user-friendly. Design responsivo ottimizzato per conversioni e esperienza utente eccellente.",
+    image: getImagePath('langamore.jpg'),
+    tags: ["Astro", "Tailwind CSS", "SEO", "Responsive"],
+    link: "https://www.langamorepollenzo.it/",
+    github: null,
+    featured: false
+  },
+  {
+    title: "Sartoria Kristina",
+    description: lang === 'en' ? "Elegant showcase website for artisan tailoring. Focus on storytelling, visual portfolio and local search engine optimization." : "Sito vetrina elegante per sartoria artigianale. Focus su storytelling, portfolio visivo e ottimizzazione per motori di ricerca locali.",
+    image: getImagePath('sartoria.png'),
+    tags: ["Astro", "Tailwind CSS", "Local SEO", "Portfolio"],
+    link: "https://sartoriakristina.it/",
+    github: null,
+    featured: false
+  }
+];
 
 const techStack = [
   "React", "Vue.js", "Astro", "Next.js", "TypeScript", "Python", 
@@ -30,77 +62,130 @@ const techStack = [
 <section id="projects" class="projects-section">
   <div class="container">
     <div class="section-header text-center">
-      <h2>Progetti in Evidenza</h2>
+      <h2>{t('projects.title')}</h2>
       <p class="section-description">
-        Una selezione dei miei lavori più significativi, che dimostrano le mie competenze 
-        tecniche e la capacità di creare soluzioni innovative.
+        {t('projects.subtitle')}
       </p>
     </div>
 
-    <div class="projects-grid">
+    <!-- Main Case Studies -->
+    <div class="case-studies">
       {projects.map((project, index) => (
-        <article class="project-card glass glass-hover" data-aos="fade-up" data-aos-delay={index * 200}>
-          <div class="project-image-container">
-            <img 
-              src={project.image} 
-              alt={project.title} 
-              class="project-image"
-              loading="lazy" 
-            />
-            <div class="project-overlay">
-              <div class="project-links">
-                <a 
-                  href={project.link} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  class="btn btn-primary btn-sm"
-                  aria-label={`Visita ${project.title}`}
-                >
-                  <i class="fas fa-external-link-alt"></i>
-                  Live Demo
-                </a>
-                {project.github && (
-                  <a 
-                    href={project.github} 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    class="btn btn-secondary btn-sm"
-                    aria-label={`Codice sorgente di ${project.title}`}
-                  >
-                    <i class="fab fa-github"></i>
-                    Codice
-                  </a>
-                )}
+        <article class="case-study glass glass-hover" data-aos="fade-up" data-aos-delay={index * 200}>
+          <div class="case-study-header">
+            <h3 class="case-study-title">{project.title}</h3>
+            {project.featured && (
+              <span class="featured-badge">
+                <i class="fas fa-star"></i>
+                Featured
+              </span>
+            )}
+          </div>
+
+          <div class="case-study-content">
+            <div class="case-study-section">
+              <h4 class="section-title">
+                <i class="fas fa-exclamation-triangle"></i>
+                {project.id === 'bitora' ? t('project1.challenge') : t('project2.challenge')}
+              </h4>
+              <p>{project.challenge}</p>
+            </div>
+
+            <div class="case-study-section">
+              <h4 class="section-title">
+                <i class="fas fa-lightbulb"></i>
+                {project.id === 'bitora' ? t('project1.solution') : t('project2.solution')}
+              </h4>
+              <p>{project.solution}</p>
+            </div>
+
+            <div class="case-study-section">
+              <h4 class="section-title">
+                <i class="fas fa-chart-line"></i>
+                {project.id === 'bitora' ? t('project1.impact') : t('project2.impact')}
+              </h4>
+              <div class="impact-content">
+                {project.impact.split('\n').map((line: string) => (
+                  line.trim() && <p class="impact-item">{line}</p>
+                ))}
+              </div>
+            </div>
+
+            <div class="case-study-section">
+              <h4 class="section-title">
+                <i class="fas fa-tools"></i>
+                {project.id === 'bitora' ? t('project1.tech_stack') : t('project2.tech_stack')}
+              </h4>
+              <div class="tech-tags">
+                {project.techStack.split(', ').map((tech) => (
+                  <span class="tech-tag">{tech}</span>
+                ))}
               </div>
             </div>
           </div>
-          
-          <div class="project-content">
-            <div class="project-header">
-              <h3 class="project-title">{project.title}</h3>
-              {project.featured && (
-                <span class="featured-badge">
-                  <i class="fas fa-star"></i>
-                  Featured
-                </span>
-              )}
+
+          {project.link && (
+            <div class="case-study-footer">
+              <a 
+                href={project.link} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                class="btn btn-primary"
+              >
+                <i class="fas fa-external-link-alt"></i>
+                {t('common.view_project')}
+              </a>
             </div>
-            
-            <p class="project-description">{project.description}</p>
-            
-            <div class="project-tags">
-              {project.tags.map((tag) => (
-                <span class="tag">{tag}</span>
-              ))}
-            </div>
-          </div>
+          )}
         </article>
       ))}
     </div>
 
+    <!-- Additional Projects -->
+    <div class="additional-projects">
+      <h3 class="additional-title">{lang === 'en' ? 'Other Projects' : 'Altri Progetti'}</h3>
+      <div class="projects-grid">
+        {additionalProjects.map((project, index) => (
+          <article class="project-card glass glass-hover" data-aos="fade-up" data-aos-delay={index * 200}>
+            <div class="project-image-container">
+              <img 
+                src={project.image} 
+                alt={project.title} 
+                class="project-image"
+                loading="lazy" 
+              />
+              <div class="project-overlay">
+                <div class="project-links">
+                  <a 
+                    href={project.link} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    class="btn btn-primary btn-sm"
+                  >
+                    <i class="fas fa-external-link-alt"></i>
+                    {t('common.live_demo')}
+                  </a>
+                </div>
+              </div>
+            </div>
+            
+            <div class="project-content">
+              <h4 class="project-title">{project.title}</h4>
+              <p class="project-description">{project.description}</p>
+              <div class="project-tags">
+                {project.tags.map((tag) => (
+                  <span class="tag">{tag}</span>
+                ))}
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+
     <!-- Tech Stack Section -->
     <div class="tech-stack-section">
-      <h3 class="tech-stack-title text-center">Tecnologie che utilizzo</h3>
+      <h3 class="tech-stack-title text-center">{lang === 'en' ? 'Technologies I Use' : 'Tecnologie che utilizzo'}</h3>
       <div class="tech-stack-grid">
         {techStack.map((tech, index) => (
           <div 
@@ -119,6 +204,117 @@ const techStack = [
 <style>
   .projects-section {
     background: var(--bg-primary);
+    padding: var(--space-20) 0;
+    position: relative;
+  }
+
+  /* Case Studies Styles */
+  .case-studies {
+    margin-bottom: var(--space-16);
+  }
+
+  .case-study {
+    max-width: 900px;
+    margin: 0 auto var(--space-12);
+    padding: var(--space-8);
+    border-radius: var(--radius-lg);
+  }
+
+  .case-study-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-6);
+    padding-bottom: var(--space-4);
+    border-bottom: 2px solid var(--border-light);
+  }
+
+  .case-study-title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0;
+  }
+
+  .case-study-section {
+    margin-bottom: var(--space-6);
+  }
+
+  .section-title {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--primary);
+    margin-bottom: var(--space-3);
+  }
+
+  .section-title i {
+    font-size: 1rem;
+  }
+
+  .case-study-section p {
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .impact-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .impact-item {
+    position: relative;
+    padding-left: var(--space-4);
+    color: var(--text-primary) !important;
+    font-weight: 500;
+  }
+
+  .impact-item::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: var(--primary);
+    font-weight: bold;
+  }
+
+  .tech-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin-top: var(--space-3);
+  }
+
+  .tech-tag {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: white;
+    padding: var(--space-1) var(--space-3);
+    border-radius: var(--radius-full);
+    font-size: 0.875rem;
+    font-weight: 500;
+  }
+
+  .case-study-footer {
+    margin-top: var(--space-6);
+    padding-top: var(--space-4);
+    border-top: 1px solid var(--border-light);
+    text-align: center;
+  }
+
+  /* Additional Projects */
+  .additional-projects {
+    margin-top: var(--space-16);
+  }
+
+  .additional-title {
+    text-align: center;
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: var(--space-8);
   }
 
   .section-header {

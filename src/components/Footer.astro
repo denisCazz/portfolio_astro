@@ -1,5 +1,9 @@
 ---
 // src/components/Footer.astro
+import { getLangFromUrl, useTranslations } from '../i18n/languages';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
 <footer class="footer">
@@ -7,29 +11,29 @@
     <div class="footer-content">
       <div class="footer-brand">
         <h3>Denis Cazzulo</h3>
-        <p>Supply Chain IT Developer & AI Specialist</p>
+        <p>{t('footer.tagline')}</p>
         <p class="footer-website">
           <a href="https://bitora.it/" target="_blank" rel="noopener noreferrer">
             <i class="fas fa-globe"></i>
-            Bitora.it - Transizione Tecnologica
+            {t('footer.website_desc')}
           </a>
         </p>
       </div>
       
       <div class="footer-links">
         <div class="footer-section">
-          <h4>Navigazione</h4>
+          <h4>{t('footer.navigation')}</h4>
           <ul>
-            <li><a href="#hero">Home</a></li>
-            <li><a href="#skills">Competenze</a></li>
-            <li><a href="#projects">Progetti</a></li>
-            <li><a href="#experience">Esperienza</a></li>
-            <li><a href="#contact">Contatti</a></li>
+            <li><a href="#hero">{t('nav.home')}</a></li>
+            <li><a href="#about">{t('nav.about')}</a></li>
+            <li><a href="#projects">{t('nav.projects')}</a></li>
+            <li><a href="#experience">{t('nav.experience')}</a></li>
+            <li><a href="#contact">{t('nav.contact')}</a></li>
           </ul>
         </div>
         
         <div class="footer-section">
-          <h4>Connettiti</h4>
+          <h4>{t('footer.connect')}</h4>
           <div class="social-links">
             <a href="https://github.com/deniscazz" class="social-link" target="_blank" rel="noopener noreferrer">
               <i class="fab fa-github"></i>
@@ -49,8 +53,8 @@
     </div>
     
     <div class="footer-bottom">
-      <p class="copyright">&copy; 2025 Denis Cazzulo. Tutti i diritti riservati.</p>
-      <p class="built-with">Costruito con <span class="heart">❤️</span> usando <strong>Astro</strong></p>
+      <p class="copyright">&copy; 2025 Denis Cazzulo. {t('footer.copyright')}</p>
+      <p class="built-with">{t('footer.built_with')} <span class="heart">❤️</span> {t('footer.using')} <strong>Astro</strong></p>
     </div>
   </div>
 </footer>

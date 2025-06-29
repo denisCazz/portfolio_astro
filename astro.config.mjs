@@ -7,11 +7,23 @@ export default defineConfig({
   site: 'https://aboutdenis.eu',
   base: '/',
   output: 'static',
+  i18n: {
+    defaultLocale: 'en',
+    locales: ['en', 'it'],
+    routing: {
+      prefixDefaultLocale: false
+    }
+  },
   integrations: [
     robotsTxt(),
     sitemap()
   ],
   build: {
     assets: '_astro'
+  },
+  vite: {
+    define: {
+      __BASE_URL__: JSON.stringify('/')
+    }
   }
 });

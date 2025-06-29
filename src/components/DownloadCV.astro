@@ -1,4 +1,9 @@
 ---
+import { getLangFromUrl, useTranslations } from '../i18n/languages';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
 const cvLinks = {
   it: "cv_cazzulo_v4.pdf",
   en: "/cv/CV_English.pdf",
@@ -12,21 +17,20 @@ const cvLinks = {
         <i class="fas fa-file-download"></i>
       </div>
       
-      <h2>Scarica il mio CV</h2>
+      <h2>{t('common.download_cv')}</h2>
       <p class="cv-description">
-        Ottieni una versione completa del mio curriculum vitae con tutti i dettagli 
-        sulla mia esperienza professionale e competenze tecniche.
+        {lang === 'en' ? 'Get a complete version of my curriculum vitae with all details about my professional experience and technical skills.' : 'Ottieni una versione completa del mio curriculum vitae con tutti i dettagli sulla mia esperienza professionale e competenze tecniche.'}
       </p>
       
       <div class="cv-buttons">
         <a href={cvLinks.it} download class="btn btn-primary cv-button">
           <i class="fas fa-download"></i>
-          CV Italiano
+          {lang === 'en' ? 'Italian CV' : 'CV Italiano'}
         </a>
         <span class="btn btn-secondary cv-button disabled">
           <i class="fas fa-download"></i>
-          CV English
-          <span class="coming-soon">(Prossimamente)</span>
+          {lang === 'en' ? 'English CV' : 'CV English'}
+          <span class="coming-soon">{lang === 'en' ? '(Coming Soon)' : '(Prossimamente)'}</span>
         </span>
       </div>
       

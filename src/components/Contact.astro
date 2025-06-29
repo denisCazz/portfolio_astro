@@ -1,13 +1,17 @@
 ---
 // src/components/Contact.astro
+import { getLangFromUrl, useTranslations } from '../i18n/languages';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
 <section id="contact" class="contact-section">
   <div class="container">
     <div class="section-header text-center">
-      <h2>Mettiamoci in Contatto</h2>
+      <h2>{t('contact.title')}</h2>
       <p class="section-description">
-        Hai un progetto in mente? Discutiamo insieme di come posso aiutarti a realizzarlo
+        {t('contact.subtitle')}
       </p>
     </div>
 
@@ -17,24 +21,24 @@
           <i class="fas fa-envelope"></i>
         </div>
         
-        <h3>Email</h3>
-        <p>Scrivimi per discutere del tuo progetto</p>
+        <h3>{t('contact.email')}</h3>
+        <p>{t('contact.email_desc')}</p>
         <a href="mailto:deniscazzulo@icloud.com" class="contact-link">
           deniscazzulo@icloud.com
         </a>
       </div>
 
       <div class="social-section glass glass-hover" data-aos="fade-up" data-aos-delay="200">
-        <h3>Seguimi sui Social</h3>
-        <p class="social-description">Resta aggiornato sui miei progetti e connettiti con me</p>
+        <h3>{t('contact.social')}</h3>
+        <p class="social-description">{t('contact.social_desc')}</p>
         <div class="social-grid">
           <a href="https://www.linkedin.com/in/denis-cazzulo-b56b551a9/" target="_blank" rel="noopener noreferrer" class="social-card">
             <div class="social-icon linkedin">
               <i class="fab fa-linkedin-in"></i>
             </div>
             <div class="social-info">
-              <span class="social-name">LinkedIn</span>
-              <span class="social-desc">Profilo professionale</span>
+              <span class="social-name">{t('contact.linkedin')}</span>
+              <span class="social-desc">{t('contact.linkedin_desc')}</span>
             </div>
           </a>
           <a href="https://github.com/deniscazz" target="_blank" rel="noopener noreferrer" class="social-card">
@@ -42,8 +46,8 @@
               <i class="fab fa-github"></i>
             </div>
             <div class="social-info">
-              <span class="social-name">GitHub</span>
-              <span class="social-desc">Repository e progetti</span>
+              <span class="social-name">{t('contact.github')}</span>
+              <span class="social-desc">{t('contact.github_desc')}</span>
             </div>
           </a>
         </div>

@@ -12,9 +12,11 @@
   "dependencies": {
     "@astrojs/check": "^0.9.4",
     "astro": "^4.16.10",
+    "astro-i18next": "^1.0.0-beta.21",
     "astro-robots-txt": "^1.0.0",
     "astro-seo": "^0.8.4",
     "astro-sitemap": "^1.0.0",
+    "i18next": "^25.2.1",
     "typescript": "^5.6.3"
   }
 }

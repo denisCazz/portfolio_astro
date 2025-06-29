@@ -1,5 +1,10 @@
 ---
 // src/components/WorkExperience.astro
+import { getLangFromUrl, useTranslations } from '../i18n/languages';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
 const experiences = [
   {
     id: "tesisquare",
@@ -106,9 +111,9 @@ const education = [
 <section id="experience" class="experience-section">
   <div class="container">
     <div class="section-header text-center">
-      <h2>Esperienza Lavorativa</h2>
+      <h2>{t('experience.title')}</h2>
       <p class="section-description">
-        Il mio percorso professionale nel mondo dello sviluppo software e delle tecnologie innovative
+        {lang === 'en' ? 'My professional journey in software development and innovative technologies' : 'Il mio percorso professionale nel mondo dello sviluppo software e delle tecnologie innovative'}
       </p>
     </div>
 

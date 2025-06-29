@@ -1,26 +1,64 @@
 ---
 // src/components/Hero.astro
+import { getLangFromUrl, useTranslations } from '../i18n/languages';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+// You can switch between the 3 headline options by changing the number
+const headlineOption = 1 as const; // Change to 1, 2, or 3 to test different options
+
+// Get the appropriate content based on selected option
+const getHeadlineContent = (option: number) => {
+  switch (option) {
+    case 1:
+      return {
+        headline: t('hero.headline1'),
+        subtitle: t('hero.subtitle1'),
+        cta: t('hero.cta1')
+      };
+    case 2:
+      return {
+        headline: t('hero.headline2'),
+        subtitle: t('hero.subtitle2'),
+        cta: t('hero.cta2')
+      };
+    case 3:
+      return {
+        headline: t('hero.headline3'),
+        subtitle: t('hero.subtitle3'),
+        cta: t('hero.cta3')
+      };
+    default:
+      return {
+        headline: t('hero.headline1'),
+        subtitle: t('hero.subtitle1'),
+        cta: t('hero.cta1')
+      };
+  }
+};
+
+const content = getHeadlineContent(headlineOption);
 ---
 
 <section class="hero">
   <div class="container">
     <div class="hero-content">
-      <h1 class="animate-fade-in-up">Denis Cazzulo</h1>
+      <h1 class="animate-fade-in-up">{t('hero.name')}</h1>
       <p class="hero-subtitle animate-fade-in-up">
-        Supply Chain IT Developer & AI Specialist
+        {content.headline}
       </p>
       <p class="hero-description animate-fade-in-up">
-        Laureato in Informatica (105/110) con Master in AI, specializzato in soluzioni enterprise per la supply chain. 
-        Combino ColdFusion, SQL e JavaScript per creare applicazioni innovative nel settore logistico.
+        {content.subtitle}
       </p>
       <div class="hero-cta animate-fade-in-up">
         <a href="#projects" class="btn btn-primary">
           <i class="fas fa-code"></i>
-          Scopri i miei progetti
+          {content.cta}
         </a>
         <a href="#contact" class="btn btn-secondary">
           <i class="fas fa-envelope"></i>
-          Contattami
+          {t('hero.secondary_cta')}
         </a>
       </div>
     </div>

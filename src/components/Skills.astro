@@ -1,5 +1,10 @@
 ---
 // src/components/Skills.astro
+import { getLangFromUrl, useTranslations } from '../i18n/languages';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
 const skills = [
   { 
     icon: "fas fa-server", 
@@ -46,19 +51,19 @@ const skills = [
 ];
 
 const getLevel = (progress: number) => {
-  if (progress >= 90) return { text: "Esperto", color: "var(--accent)" };
-  else if (progress >= 75) return { text: "Avanzato", color: "var(--primary)" };
-  else if (progress >= 50) return { text: "Intermedio", color: "var(--warning)" };
-  else return { text: "Base", color: "var(--secondary)" };
+  if (progress >= 90) return { text: lang === 'en' ? "Expert" : "Esperto", color: "var(--accent)" };
+  else if (progress >= 75) return { text: lang === 'en' ? "Advanced" : "Avanzato", color: "var(--primary)" };
+  else if (progress >= 50) return { text: lang === 'en' ? "Intermediate" : "Intermedio", color: "var(--warning)" };
+  else return { text: lang === 'en' ? "Basic" : "Base", color: "var(--secondary)" };
 };
 ---
 
 <section id="skills" class="skills-section">
   <div class="container">
     <div class="section-header text-center">
-      <h2>Skills & Competenze</h2>
+      <h2>{t('skills.title')}</h2>
       <p class="section-description">
-        Le tecnologie e competenze che utilizzo per creare soluzioni innovative
+        {lang === 'en' ? 'The technologies and skills I use to create innovative solutions' : 'Le tecnologie e competenze che utilizzo per creare soluzioni innovative'}
       </p>
     </div>
     

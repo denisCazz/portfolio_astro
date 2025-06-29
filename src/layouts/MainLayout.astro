@@ -2,12 +2,16 @@
 // src/layouts/MainLayout.astro
 import '../styles/global.css';
 import { SEO } from "astro-seo";
+import { getLangFromUrl } from '../i18n/languages';
+
+const lang = getLangFromUrl(Astro.url);
 ---
 
-<html lang="it">
+<html lang={lang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <base href={new URL(Astro.site || '/', Astro.url.origin).href} />
     <title>Portfolio Denis Cazzulo</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

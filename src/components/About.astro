@@ -1,0 +1,165 @@
+---
+import { getLangFromUrl, useTranslations } from '../i18n/languages';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<section id="about" class="about-section">
+  <div class="container">
+    <div class="section-header text-center">
+      <h2>{t('about.title')}</h2>
+    </div>
+
+    <div class="about-content glass glass-hover" data-aos="fade-up">
+      <div class="about-text">
+        <p class="about-description">
+          {t('about.content')}
+        </p>
+      </div>
+    </div>
+
+    <!-- Value Proposition Section -->
+    <div class="value-section">
+      <h3 class="value-title">{t('value.title')}</h3>
+      <div class="value-grid">
+        <div class="value-card glass glass-hover" data-aos="fade-up" data-aos-delay="100">
+          <div class="value-icon">
+            <i class="fas fa-brain"></i>
+          </div>
+          <h4>{t('value.point1_title')}</h4>
+          <p>{t('value.point1_desc')}</p>
+        </div>
+
+        <div class="value-card glass glass-hover" data-aos="fade-up" data-aos-delay="200">
+          <div class="value-icon">
+            <i class="fas fa-lightbulb"></i>
+          </div>
+          <h4>{t('value.point2_title')}</h4>
+          <p>{t('value.point2_desc')}</p>
+        </div>
+
+        <div class="value-card glass glass-hover" data-aos="fade-up" data-aos-delay="300">
+          <div class="value-icon">
+            <i class="fas fa-chart-line"></i>
+          </div>
+          <h4>{t('value.point3_title')}</h4>
+          <p>{t('value.point3_desc')}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .about-section {
+    padding: var(--space-20) 0;
+    position: relative;
+  }
+
+  .about-content {
+    max-width: 800px;
+    margin: 0 auto var(--space-16);
+    padding: var(--space-8);
+    border-radius: var(--radius-lg);
+  }
+
+  .about-description {
+    font-size: 1.125rem;
+    line-height: 1.7;
+    color: var(--text-primary);
+    margin: 0;
+  }
+
+  .value-section {
+    margin-top: var(--space-16);
+  }
+
+  .value-title {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: var(--space-12);
+  }
+
+  .value-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--space-6);
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .value-card {
+    padding: var(--space-6);
+    border-radius: var(--radius-lg);
+    text-align: center;
+    transition: transform 0.3s ease;
+  }
+
+  .value-card:hover {
+    transform: translateY(-4px);
+  }
+
+  .value-icon {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto var(--space-4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    border-radius: 50%;
+    color: white;
+    font-size: 1.5rem;
+  }
+
+  .value-card h4 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: var(--space-3);
+  }
+
+  .value-card p {
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  @media (max-width: 768px) {
+    .about-section {
+      padding: var(--space-16) 0;
+    }
+
+    .about-content {
+      padding: var(--space-6);
+      margin-bottom: var(--space-12);
+    }
+
+    .about-description {
+      font-size: 1rem;
+    }
+
+    .value-title {
+      font-size: 1.75rem;
+      margin-bottom: var(--space-8);
+    }
+
+    .value-grid {
+      grid-template-columns: 1fr;
+      gap: var(--space-4);
+    }
+
+    .value-card {
+      padding: var(--space-5);
+    }
+
+    .value-icon {
+      width: 50px;
+      height: 50px;
+      font-size: 1.25rem;
+    }
+  }
+</style>
